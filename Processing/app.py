@@ -15,6 +15,8 @@ from workout_stats import WorkoutStats
 from base import Base
 from apscheduler.schedulers.background import BackgroundScheduler
 
+import pytz
+timezone = pytz.timezone('America/Los_Angeles')
 
 with open('app_conf.yml', 'r') as f:
     app_config = yaml.safe_load(f.read())
@@ -120,10 +122,8 @@ def populate_stats():
 
 
 def init_scheduler():
-    sched = BackgroundScheduler(daemon=True)
-    sched.add_job(populate_stats,
-                  'interval',
-                  seconds=app_config['scheduler']['period_sec'])
+    sched = BackgroundScheduler(daemon=True, timezone='America/Los_Angeles')
+    sched.add_job(populate_stats, 'interval', seconds=5)
     sched.start()
 
 # Initialize the Flask app
