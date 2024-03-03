@@ -1,0 +1,131 @@
+openapi: 3.0.0
+info:
+  description: This API provides audit info
+  version: "1.0.0"
+  title: Audit API
+  contact:
+    email: mafonso4@my.bcit.ca
+paths:
+  /workout:
+    get:
+      summary: get a workout
+      operationId: app.get_workout
+      description: get a workout
+      parameters:
+        - name: index
+          in: query
+          description: Gets the Workout at the index in the event store
+          schema:
+            type: integer
+            example: 100
+      responses:
+        '200':
+          description: Successfully returned a workout event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workout'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /workout/log:
+    get:
+      summary: Get a workout log
+      operationId: app.get_workout_log
+      description: Get a workout log
+      parameters:
+        - name: index
+          in: query
+          description: Gets the Workout log at the index in the event store
+          schema:
+            type: integer
+            example: 100
+      responses:
+        '200':
+          description: Successfully returned a heart rate event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrainingLog'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+components:
+  schemas:
+    Workout:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        trainingDays:
+          type: integer
+        blocks:
+          type: integer
+    TrainingLog:
+      type: object
+      properties:
+        trainingDayID:
+          type: string
+          format: uuid
+        name:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        exercises:
+          type: array
+          items:
+            $ref: '#/components/schemas/Exercise'
+    Exercise:
+      type: object
+      properties:
+        exerciseName:
+          type: string
+        sets:
+          type: integer
+        reps:
+          type: integer

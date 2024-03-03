@@ -1,0 +1,169 @@
+openapi: 3.0.0
+info:
+  description: A simple API for fitness tracking. Users can create workout plans based on their goals.
+  version: "1.0.0"
+  title: Fitness Planning API
+  contact:
+    email: mafonso4@my.bcit.ca
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+paths:
+  /workout:
+    get:
+      summary: returns workout(s) 
+      operationId: app.get_workout
+      description: Return workout plan for a given time interval
+      parameters:
+        - name: start_timestamp
+          in: query
+          description: Limits the number of readings returned
+          schema:
+            type: string
+            format: date-time
+            example: 2016-08-29T09:12:33.001Z
+        - name: end_timestamp
+          in: query
+          description: Limits the number of readings returned
+          schema:
+            type: string
+            format: date-time
+            example: 2016-08-29T09:12:33.001Z
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetWorkout'
+        '201':
+          description: Successful response with an empty list
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+                example: []
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /workout/log:
+    get:
+      summary: returns workout(s) 
+      operationId: app.get_workout_log
+      description: Return workout log for a given time interval
+      parameters:
+        - name: start_timestamp
+          in: query
+          description: Limits the number of readings returned
+          schema:
+            type: string
+            format: date-time
+            example: 2016-08-29T09:12:33.001Z
+        - name: end_timestamp
+          in: query
+          description: Limits the number of readings returned
+          schema:
+            type: string
+            format: date-time
+            example: 2016-08-29T09:12:33.001Z
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetWorkoutLog'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+components:
+  schemas:
+    Workout:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+        frequency:
+          type: integer
+        traceId:
+          type: string
+    WorkoutLog:
+      type: object
+      properties:
+        trainingDayID:
+          type: string
+          format: uuid
+        name:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        exercises:
+          type: array
+          items:
+            $ref: '#/components/schemas/Exercise'
+    Exercise:
+      type: object
+      properties:
+        exerciseName:
+          type: string
+        sets:
+          type: integer
+        reps:
+          type: integer
+    GetWorkout:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          type:
+            type: string
+          startDate:
+            type: string
+          endDate:
+            type: string
+          frequency:
+            type: integer
+          traceId:
+            type: string
+    GetWorkoutLog:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+          startDate:
+            type: string
+          endDate:
+            type: string
+          exercises:
+            type: string
+
+    

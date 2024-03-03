@@ -1,0 +1,11 @@
+version: 1
+eventstore1:
+ url: http://localhost:8090/workout
+eventstore2:
+ url: http://localhost:8090/workout/log
+stats:
+ url: http://localhost:8100/stats
+events:
+ hostname: markus-kafka.canadacentral.cloudapp.azure.com
+ port: 9092
+ topic: events

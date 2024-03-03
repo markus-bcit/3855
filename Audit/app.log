@@ -1,0 +1,88 @@
+2024-03-02 17:36:43,549 - basicLogger - INFO - Retrieving BP at index 3
+2024-03-02 17:36:44,619 - basicLogger - ERROR - Could not find BP at index 3
+2024-03-02 17:36:49,353 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:36:50,414 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:37:37,365 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:37:38,421 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:38:08,152 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:38:09,207 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:38:15,817 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:38:16,873 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:38:36,164 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:38:37,224 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:38:42,527 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:38:43,596 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:38:48,108 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:38:49,173 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:39:29,700 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:39:30,771 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:39:44,607 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:41:25,906 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:42:42,260 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:42:43,329 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:42:50,552 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:42:51,608 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:42:53,294 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:42:54,588 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:42:56,063 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:42:57,124 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:42:58,063 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:42:59,948 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:43:00,908 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:43:01,977 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:43:02,959 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:43:05,356 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:43:06,335 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:43:07,443 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:43:08,425 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:43:10,691 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:43:11,627 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:43:12,734 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:43:13,905 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:43:16,064 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:43:18,254 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:43:19,370 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:43:22,591 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:43:23,713 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:43:25,736 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:43:26,865 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:43:27,787 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:43:28,899 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:43:29,805 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:43:32,107 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:45:10,970 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:45:12,084 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:45:42,336 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:45:43,460 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:45:49,977 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:45:51,115 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:48:44,788 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:48:44,788 - basicLogger - ERROR - No more messages found
+2024-03-02 17:48:44,788 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:50:16,118 - basicLogger - INFO - Retrieving BP at index 1
+2024-03-02 17:50:16,229 - basicLogger - ERROR - No more messages found
+2024-03-02 17:50:16,230 - basicLogger - ERROR - Could not find BP at index 1
+2024-03-02 17:50:28,317 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:50:28,427 - basicLogger - ERROR - No more messages found
+2024-03-02 17:50:28,427 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:50:38,514 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:50:38,625 - basicLogger - ERROR - No more messages found
+2024-03-02 17:50:38,625 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:50:48,726 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:50:48,837 - basicLogger - ERROR - No more messages found
+2024-03-02 17:50:48,837 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:51:28,194 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:51:29,329 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:53:06,399 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:53:07,521 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:53:23,969 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:53:25,107 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:53:44,713 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:53:45,848 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:55:13,534 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:55:14,674 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:57:55,971 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:58:05,958 - basicLogger - INFO - Retrieving BP at index 0
+2024-03-02 17:58:06,072 - basicLogger - ERROR - No more messages found
+2024-03-02 17:58:06,072 - basicLogger - ERROR - Could not find BP at index 0
+2024-03-02 17:58:26,435 - basicLogger - INFO - Retrieving BP at index 0
