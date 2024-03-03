@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  description: A simple API for fitness tracking. Users can create workout plans based on their goals.
+  version: "1.0.0"
+  title: Fitness Planning API
+  contact:
+    email: mafonso4@my.bcit.ca
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+paths:
+  /stats:
+    get:
+      summary: Gets the event stats
+      operationId: app.get_stats
+      description: Gets the event stats
+      responses:
+        '200':
+          description: Successfully returned a list of workout event
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/WorkoutStats'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+components:
+  schemas:
+    WorkoutStats:
+      required:
+      - num_workouts
+      - num_workout_logs
+      - max_freq_workout
+      - min_freq_workout
+      properties:
+        num_workouts:
+          type: integer
+          example: 300
+        num_workout_logs:
+          type: integer
+          example: 50000
+        max_freq_workout:
+          type: integer
+          example: 8
+        min_freq_workout:
+          type: integer
+          example: 3
+
+    

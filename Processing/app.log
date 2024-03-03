@@ -1,0 +1,321 @@
+2024-02-12 08:48:46,070 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:48:50,181 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 08:48:50,212 - basicLogger - DEBUG - Updated statistics ID: 1
+2024-02-12 08:48:50,212 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:48:51,062 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:48:55,160 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 08:48:55,180 - basicLogger - DEBUG - Updated statistics ID: 2
+2024-02-12 08:48:55,180 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:48:56,073 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:49:00,177 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 08:49:00,186 - basicLogger - DEBUG - Updated statistics ID: 3
+2024-02-12 08:49:00,187 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:49:01,063 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:49:05,157 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 08:49:05,179 - basicLogger - DEBUG - Updated statistics ID: 4
+2024-02-12 08:49:05,179 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:49:06,073 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:49:10,165 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 08:49:10,176 - basicLogger - DEBUG - Updated statistics ID: 5
+2024-02-12 08:49:10,176 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:49:11,074 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:49:15,167 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 08:49:15,188 - basicLogger - DEBUG - Updated statistics ID: 6
+2024-02-12 08:49:15,189 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:49:16,076 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:49:20,159 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 08:49:20,170 - basicLogger - DEBUG - Updated statistics ID: 7
+2024-02-12 08:49:20,171 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:49:21,069 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:49:25,165 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 08:49:25,184 - basicLogger - DEBUG - Updated statistics ID: 8
+2024-02-12 08:49:25,186 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:49:26,063 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:49:30,159 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 08:49:30,168 - basicLogger - DEBUG - Updated statistics ID: 9
+2024-02-12 08:49:30,169 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:49:31,070 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:49:35,179 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 08:49:35,189 - basicLogger - DEBUG - Updated statistics ID: 10
+2024-02-12 08:49:35,189 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:49:36,072 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:49:40,162 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 08:49:40,173 - basicLogger - DEBUG - Updated statistics ID: 11
+2024-02-12 08:49:40,174 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:49:41,072 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:49:45,168 - basicLogger - INFO - Workout events: 2 - Workout Log events: 10
+2024-02-12 08:49:45,168 - basicLogger - INFO - Workout Log event being processed, trace ID: 5a40a012-1cc6-420a-b02a-a85b96261a76
+2024-02-12 08:49:45,169 - basicLogger - INFO - Workout Log event being processed, trace ID: ea78f472-93f0-47b3-b346-299b248668f9
+2024-02-12 08:49:45,169 - basicLogger - INFO - Workout Log event being processed, trace ID: f686883f-147c-45cc-b415-6e06d246642a
+2024-02-12 08:49:45,170 - basicLogger - INFO - Workout Log event being processed, trace ID: c8ba556a-995f-4f5d-8145-1b7ecf51df0f
+2024-02-12 08:49:45,170 - basicLogger - INFO - Workout Log event being processed, trace ID: 797ec45d-4aaa-4e6c-9459-d787dcfad94a
+2024-02-12 08:49:45,170 - basicLogger - INFO - Workout Log event being processed, trace ID: 65dc5f1c-62b6-4a42-9267-8afd5c8022e7
+2024-02-12 08:49:45,170 - basicLogger - INFO - Workout Log event being processed, trace ID: 13fcb097-e9f7-4093-8150-a56cab06c6ca
+2024-02-12 08:49:45,171 - basicLogger - INFO - Workout Log event being processed, trace ID: 874847cd-68dd-4edf-a256-ddf6a276dce8
+2024-02-12 08:49:45,171 - basicLogger - INFO - Workout Log event being processed, trace ID: 0195cd9e-fbbe-46d0-b9f9-c2aeba76e2da
+2024-02-12 08:49:45,171 - basicLogger - INFO - Workout Log event being processed, trace ID: 94d7a549-9172-4c0e-be91-3fe9f451493f
+2024-02-12 08:49:45,172 - basicLogger - INFO - Workout event being processed, trace ID: 1f8550d3-7d4c-4cb8-a422-4fb6ab48b234
+2024-02-12 08:49:45,172 - basicLogger - INFO - Workout event being processed, trace ID: a1636932-f819-43e4-a611-acb2b2e27c2a
+2024-02-12 08:49:45,182 - basicLogger - DEBUG - Updated statistics ID: 12
+2024-02-12 08:49:45,183 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:49:46,075 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:49:50,161 - basicLogger - INFO - Workout events: 8 - Workout Log events: 5
+2024-02-12 08:49:50,162 - basicLogger - INFO - Workout Log event being processed, trace ID: a61996d8-7e58-431f-8ce0-6bec74ee9559
+2024-02-12 08:49:50,162 - basicLogger - INFO - Workout Log event being processed, trace ID: 3cdb20e3-a137-48f0-aa18-9321fd1024bb
+2024-02-12 08:49:50,162 - basicLogger - INFO - Workout Log event being processed, trace ID: 622aae52-0d15-453f-93ed-a665e1d5fa30
+2024-02-12 08:49:50,163 - basicLogger - INFO - Workout Log event being processed, trace ID: a49f13eb-33c7-4340-a284-002da486f8b5
+2024-02-12 08:49:50,163 - basicLogger - INFO - Workout Log event being processed, trace ID: 5f256455-0e78-40f4-8022-4cb469ea2ad9
+2024-02-12 08:49:50,163 - basicLogger - INFO - Workout event being processed, trace ID: 130d1045-5a59-4a44-a6ad-765c1f085c68
+2024-02-12 08:49:50,163 - basicLogger - INFO - Workout event being processed, trace ID: a9f0db1f-929e-4b04-8e19-bbad6787ed8d
+2024-02-12 08:49:50,164 - basicLogger - INFO - Workout event being processed, trace ID: d02919de-8fc4-4a8e-8522-5d51f0980869
+2024-02-12 08:49:50,164 - basicLogger - INFO - Workout event being processed, trace ID: 83515d9d-95ef-47ea-9c41-de64b3dcf2de
+2024-02-12 08:49:50,164 - basicLogger - INFO - Workout event being processed, trace ID: b74ff2e5-50e8-4d89-aeee-ee2da5140392
+2024-02-12 08:49:50,165 - basicLogger - INFO - Workout event being processed, trace ID: 9f08a06f-9b98-40bd-9072-31c09c0e0d8e
+2024-02-12 08:49:50,165 - basicLogger - INFO - Workout event being processed, trace ID: 6b484a43-208c-4978-8f8c-4f5bba702dfa
+2024-02-12 08:49:50,165 - basicLogger - INFO - Workout event being processed, trace ID: cc71f007-3fd8-4000-81d6-2ef17882aa14
+2024-02-12 08:49:50,176 - basicLogger - DEBUG - Updated statistics ID: 13
+2024-02-12 08:49:50,177 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:49:51,069 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:49:55,160 - basicLogger - INFO - Workout events: 5 - Workout Log events: 5
+2024-02-12 08:49:55,160 - basicLogger - INFO - Workout Log event being processed, trace ID: ff7a3612-1406-40f1-bd77-0c9253c65ae2
+2024-02-12 08:49:55,161 - basicLogger - INFO - Workout Log event being processed, trace ID: ad88e006-9bc3-4b6b-b7d6-63c0a276067c
+2024-02-12 08:49:55,161 - basicLogger - INFO - Workout Log event being processed, trace ID: 90503747-d7dd-44b7-be7f-bac3abb04d7b
+2024-02-12 08:49:55,161 - basicLogger - INFO - Workout Log event being processed, trace ID: ce7a62c7-a911-4749-b34e-7e7c26d0a940
+2024-02-12 08:49:55,161 - basicLogger - INFO - Workout Log event being processed, trace ID: bcc2bbdf-6e1a-4b0f-88d4-ede52d10a904
+2024-02-12 08:49:55,162 - basicLogger - INFO - Workout event being processed, trace ID: 16b18e3b-a093-4ae1-9fdf-562dbb962586
+2024-02-12 08:49:55,162 - basicLogger - INFO - Workout event being processed, trace ID: 9d3fc9d5-1f31-476c-86f2-f492eb11cf54
+2024-02-12 08:49:55,163 - basicLogger - INFO - Workout event being processed, trace ID: 629425ce-473a-424d-ae22-597d810b8368
+2024-02-12 08:49:55,163 - basicLogger - INFO - Workout event being processed, trace ID: 12b71e54-4f8c-4347-a15f-a2cc29e8844c
+2024-02-12 08:49:55,163 - basicLogger - INFO - Workout event being processed, trace ID: 89ec2caf-0763-4a55-a2c7-e33ac701df2f
+2024-02-12 08:49:55,187 - basicLogger - DEBUG - Updated statistics ID: 14
+2024-02-12 08:49:55,187 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:49:56,071 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:50:00,162 - basicLogger - INFO - Workout events: 5 - Workout Log events: 10
+2024-02-12 08:50:00,162 - basicLogger - INFO - Workout Log event being processed, trace ID: fc3025cd-6e50-4cad-a991-14924f5a14e4
+2024-02-12 08:50:00,163 - basicLogger - INFO - Workout Log event being processed, trace ID: 01b1fc06-6e25-47fd-a010-333ef821b2de
+2024-02-12 08:50:00,163 - basicLogger - INFO - Workout Log event being processed, trace ID: 194a96e2-0e81-4c4b-9e1b-31e17b11b8c7
+2024-02-12 08:50:00,163 - basicLogger - INFO - Workout Log event being processed, trace ID: 9b997a18-5aac-47b5-8615-c97336541c9c
+2024-02-12 08:50:00,164 - basicLogger - INFO - Workout Log event being processed, trace ID: c010133b-9949-4c51-9048-953016a76586
+2024-02-12 08:50:00,164 - basicLogger - INFO - Workout Log event being processed, trace ID: c46fe18c-05de-4296-b8ed-1fb63bba8f49
+2024-02-12 08:50:00,165 - basicLogger - INFO - Workout Log event being processed, trace ID: 71138369-f316-4a6e-91db-439773a3dc3e
+2024-02-12 08:50:00,165 - basicLogger - INFO - Workout Log event being processed, trace ID: 8c9d442b-0637-4fd7-a09b-d93d9a2178a4
+2024-02-12 08:50:00,165 - basicLogger - INFO - Workout Log event being processed, trace ID: 577a3073-3cb8-4c37-ae5f-bb25efbdec1d
+2024-02-12 08:50:00,166 - basicLogger - INFO - Workout Log event being processed, trace ID: cb2f7695-9f74-4216-8182-d38d11a06ad6
+2024-02-12 08:50:00,166 - basicLogger - INFO - Workout event being processed, trace ID: 08d32a69-19ee-475c-ad2e-1b712bed15be
+2024-02-12 08:50:00,166 - basicLogger - INFO - Workout event being processed, trace ID: 6eba3ae5-eac3-43cd-84de-c22fcd6ed707
+2024-02-12 08:50:00,166 - basicLogger - INFO - Workout event being processed, trace ID: ad9f543a-397e-402a-8f88-c6736710f784
+2024-02-12 08:50:00,166 - basicLogger - INFO - Workout event being processed, trace ID: 5af09029-de51-448b-a042-6fb6a05130a9
+2024-02-12 08:50:00,167 - basicLogger - INFO - Workout event being processed, trace ID: 842e89e1-3cf4-4f06-92be-edd4c8db6d54
+2024-02-12 08:50:00,177 - basicLogger - DEBUG - Updated statistics ID: 15
+2024-02-12 08:50:00,178 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:50:01,067 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:50:05,184 - basicLogger - INFO - Workout events: 5 - Workout Log events: 0
+2024-02-12 08:50:05,184 - basicLogger - INFO - Workout event being processed, trace ID: f9d4c29a-854c-407e-aee4-04ba89b6ded5
+2024-02-12 08:50:05,184 - basicLogger - INFO - Workout event being processed, trace ID: 605fbc35-d574-4cb5-add4-2de66b3e3ae9
+2024-02-12 08:50:05,184 - basicLogger - INFO - Workout event being processed, trace ID: dbd3284f-3710-466e-aea6-6f00f1315744
+2024-02-12 08:50:05,184 - basicLogger - INFO - Workout event being processed, trace ID: 55a1fbc9-8769-4f33-acd6-52640061159a
+2024-02-12 08:50:05,185 - basicLogger - INFO - Workout event being processed, trace ID: 4b1a1fe7-5cdc-451f-9f05-f4e9197fdb04
+2024-02-12 08:50:05,204 - basicLogger - DEBUG - Updated statistics ID: 16
+2024-02-12 08:50:05,205 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:50:06,067 - basicLogger - INFO - Periodic processing has started
+2024-02-12 08:50:10,175 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 08:50:10,186 - basicLogger - DEBUG - Updated statistics ID: 17
+2024-02-12 08:50:10,186 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 08:50:11,071 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:02:11,218 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:02:15,394 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:02:15,415 - basicLogger - DEBUG - Updated statistics ID: 18
+2024-02-12 10:02:15,416 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:02:16,217 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:02:20,269 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:02:20,283 - basicLogger - DEBUG - Updated statistics ID: 19
+2024-02-12 10:02:20,284 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:02:21,217 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:02:25,275 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:02:25,290 - basicLogger - DEBUG - Updated statistics ID: 20
+2024-02-12 10:02:25,291 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:02:26,217 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:02:30,257 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:02:30,272 - basicLogger - DEBUG - Updated statistics ID: 21
+2024-02-12 10:02:30,273 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:07:23,403 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:07:27,485 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:07:27,509 - basicLogger - DEBUG - Updated statistics ID: 22
+2024-02-12 10:07:27,511 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:07:28,401 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:07:32,458 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:07:32,491 - basicLogger - DEBUG - Updated statistics ID: 23
+2024-02-12 10:07:32,495 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:07:33,400 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:07:37,467 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:07:37,483 - basicLogger - DEBUG - Updated statistics ID: 24
+2024-02-12 10:07:37,484 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:10:36,198 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:10:40,254 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:10:40,277 - basicLogger - DEBUG - Updated statistics ID: 1
+2024-02-12 10:10:40,278 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:10:41,197 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:10:45,233 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:10:45,251 - basicLogger - DEBUG - Updated statistics ID: 2
+2024-02-12 10:10:45,254 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:10:46,197 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:10:50,228 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:10:50,245 - basicLogger - DEBUG - Updated statistics ID: 3
+2024-02-12 10:10:50,246 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:10:51,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:10:55,229 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:10:55,244 - basicLogger - DEBUG - Updated statistics ID: 4
+2024-02-12 10:10:55,245 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:10:56,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:10:57,104 - basicLogger - INFO - Request for statistics has started
+2024-02-12 10:10:57,113 - basicLogger - DEBUG - Current statistics: {'num_workouts': 0, 'num_workout_logs': 0, 'max_freq_workout': 0, 'min_freq_workout': 0, 'last_update': datetime.datetime(2024, 2, 12, 10, 10, 51, 199480)}
+2024-02-12 10:10:57,114 - basicLogger - INFO - Request for statistics has completed
+2024-02-12 10:11:00,308 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:11:00,325 - basicLogger - DEBUG - Updated statistics ID: 5
+2024-02-12 10:11:00,326 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:11:01,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:11:05,232 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:11:05,273 - basicLogger - DEBUG - Updated statistics ID: 6
+2024-02-12 10:11:05,275 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:11:06,197 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:11:10,228 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:11:10,245 - basicLogger - DEBUG - Updated statistics ID: 7
+2024-02-12 10:11:10,245 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:11:11,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:11:15,230 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:11:15,249 - basicLogger - DEBUG - Updated statistics ID: 8
+2024-02-12 10:11:15,250 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:11:16,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:11:20,230 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:11:20,249 - basicLogger - DEBUG - Updated statistics ID: 9
+2024-02-12 10:11:20,250 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:11:21,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:11:25,228 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:11:25,254 - basicLogger - DEBUG - Updated statistics ID: 10
+2024-02-12 10:11:25,254 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:11:26,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:11:30,228 - basicLogger - INFO - Workout events: 5 - Workout Log events: 5
+2024-02-12 10:11:30,229 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 82140cbc-a0fd-4e6f-89c5-cb7794ca8f5a
+2024-02-12 10:11:30,229 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 78c3903f-681f-44fc-9522-bafd5b68ed61
+2024-02-12 10:11:30,230 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 68396505-6de4-4e87-9f82-effddd55e02a
+2024-02-12 10:11:30,231 - basicLogger - DEBUG - Workout Log event being processed, trace ID: b7481e00-f8e7-4e8e-980b-f167a2a8ed5f
+2024-02-12 10:11:30,232 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 1a677040-237a-4ebe-bf7b-59172b620379
+2024-02-12 10:11:30,232 - basicLogger - DEBUG - Workout event being processed, trace ID: cebdcaed-5d31-469a-a1d1-0c80c26ac6a5
+2024-02-12 10:11:30,233 - basicLogger - DEBUG - Workout event being processed, trace ID: d5fb43c5-b6a9-45e9-9829-b14d2d2c201b
+2024-02-12 10:11:30,233 - basicLogger - DEBUG - Workout event being processed, trace ID: 596202b5-dbdb-42bb-86d7-704c30155d1b
+2024-02-12 10:11:30,235 - basicLogger - DEBUG - Workout event being processed, trace ID: 2f7d1e62-a3a4-4309-aad0-27bc60974896
+2024-02-12 10:11:30,236 - basicLogger - DEBUG - Workout event being processed, trace ID: d3dd8051-fe90-44fb-8185-4d0d9723f39e
+2024-02-12 10:11:30,260 - basicLogger - DEBUG - Updated statistics ID: 11
+2024-02-12 10:11:30,262 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:11:31,197 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:11:35,230 - basicLogger - INFO - Workout events: 5 - Workout Log events: 5
+2024-02-12 10:11:35,230 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 96502b0c-0255-4836-b25f-c93f2a51c89e
+2024-02-12 10:11:35,232 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 40b5a9d2-8ccc-437f-a2bd-9ede095e95fe
+2024-02-12 10:11:35,233 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 7ffc288e-d467-44bb-8e65-7e7ebd7b8a5d
+2024-02-12 10:11:35,234 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 71422ae7-2c42-445c-9468-235cc1ea2b23
+2024-02-12 10:11:35,234 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 0aef1432-eac1-4bcb-8b04-4bf49c3f4f8d
+2024-02-12 10:11:35,235 - basicLogger - DEBUG - Workout event being processed, trace ID: 26525d1b-c93f-4c06-97c7-a59856a2c792
+2024-02-12 10:11:35,236 - basicLogger - DEBUG - Workout event being processed, trace ID: 44654912-460d-4e6b-a651-481abebbc3fe
+2024-02-12 10:11:35,236 - basicLogger - DEBUG - Workout event being processed, trace ID: e3b1c687-eb70-4f9a-bded-5dda717ad5db
+2024-02-12 10:11:35,238 - basicLogger - DEBUG - Workout event being processed, trace ID: 47e7269f-8b39-46b7-85bf-06fb64a05e53
+2024-02-12 10:11:35,239 - basicLogger - DEBUG - Workout event being processed, trace ID: 1309a283-099f-4bcc-b279-1b53bf095e09
+2024-02-12 10:11:35,277 - basicLogger - DEBUG - Updated statistics ID: 12
+2024-02-12 10:11:35,279 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:11:36,197 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:11:40,234 - basicLogger - INFO - Workout events: 5 - Workout Log events: 5
+2024-02-12 10:11:40,235 - basicLogger - DEBUG - Workout Log event being processed, trace ID: cd67af6e-564b-4029-857a-05e1c0c919d6
+2024-02-12 10:11:40,235 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 94112282-0a17-460f-91a6-5cd46c197804
+2024-02-12 10:11:40,237 - basicLogger - DEBUG - Workout Log event being processed, trace ID: a3bb7536-1afe-49ba-ab6d-d70464a559b1
+2024-02-12 10:11:40,238 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 50df0110-c6b9-4820-b786-2ab05c5f8777
+2024-02-12 10:11:40,239 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 56929a23-c2db-4270-b50a-83b94e6e5f09
+2024-02-12 10:11:40,239 - basicLogger - DEBUG - Workout event being processed, trace ID: 9919f60e-7ccc-4b8f-83a9-57e333e4ad23
+2024-02-12 10:11:40,240 - basicLogger - DEBUG - Workout event being processed, trace ID: 798fc0f1-39db-484e-8c15-3b9d45fb35d2
+2024-02-12 10:11:40,241 - basicLogger - DEBUG - Workout event being processed, trace ID: 9b1de04f-2965-4955-8133-6d4d30f1ceff
+2024-02-12 10:11:40,241 - basicLogger - DEBUG - Workout event being processed, trace ID: 598abdd5-8b18-4cb3-ad7a-4bd440613bbd
+2024-02-12 10:11:40,242 - basicLogger - DEBUG - Workout event being processed, trace ID: 16a8e2f2-890a-45db-9735-908374973cf7
+2024-02-12 10:11:40,256 - basicLogger - DEBUG - Updated statistics ID: 13
+2024-02-12 10:11:40,257 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:11:41,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:11:45,230 - basicLogger - INFO - Workout events: 5 - Workout Log events: 10
+2024-02-12 10:11:45,230 - basicLogger - DEBUG - Workout Log event being processed, trace ID: b6e9291b-6249-4d82-9f42-04bf8b68c4cb
+2024-02-12 10:11:45,231 - basicLogger - DEBUG - Workout Log event being processed, trace ID: cb4edcd0-bfbc-47d9-aa16-36e05feb1298
+2024-02-12 10:11:45,232 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 42fd6735-a567-44fe-91e2-49237b74735e
+2024-02-12 10:11:45,232 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 2eb792fb-02a9-46af-97f4-6261ac9a21bc
+2024-02-12 10:11:45,234 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 04dc8311-4ce0-4b41-9fcf-16fb23f3aed9
+2024-02-12 10:11:45,234 - basicLogger - DEBUG - Workout Log event being processed, trace ID: a92c57d6-ea8f-4ed7-9e8e-e0948f1111ba
+2024-02-12 10:11:45,235 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 23a53f22-2b3a-4977-bcbf-025bbfc2ee3b
+2024-02-12 10:11:45,235 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 53825ffe-4160-4a87-b66a-30f23709381b
+2024-02-12 10:11:45,237 - basicLogger - DEBUG - Workout Log event being processed, trace ID: 7d710102-9fef-426f-a1e7-3cfeeb4f5f23
+2024-02-12 10:11:45,238 - basicLogger - DEBUG - Workout Log event being processed, trace ID: be653f18-e974-43e8-9a0e-259d0636dd2a
+2024-02-12 10:11:45,238 - basicLogger - DEBUG - Workout event being processed, trace ID: 10415c56-500e-4b9b-8a5a-0d5a1d713b98
+2024-02-12 10:11:45,239 - basicLogger - DEBUG - Workout event being processed, trace ID: dc407598-2daa-46ed-8b24-2f5a5b0913d6
+2024-02-12 10:11:45,240 - basicLogger - DEBUG - Workout event being processed, trace ID: c2855556-774c-42ec-b520-12e161b49f09
+2024-02-12 10:11:45,240 - basicLogger - DEBUG - Workout event being processed, trace ID: 2cc813fd-1042-4c42-bac4-73b8af8736f4
+2024-02-12 10:11:45,242 - basicLogger - DEBUG - Workout event being processed, trace ID: d9698e12-d701-4c37-859a-195c2269228b
+2024-02-12 10:11:45,262 - basicLogger - DEBUG - Updated statistics ID: 14
+2024-02-12 10:11:45,266 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:11:46,197 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:11:50,228 - basicLogger - INFO - Workout events: 5 - Workout Log events: 0
+2024-02-12 10:11:50,229 - basicLogger - DEBUG - Workout event being processed, trace ID: c0a50466-8654-43aa-bfcd-460b80bcfb89
+2024-02-12 10:11:50,229 - basicLogger - DEBUG - Workout event being processed, trace ID: cc720c17-f153-41c4-b33b-43b00a1fc6d5
+2024-02-12 10:11:50,230 - basicLogger - DEBUG - Workout event being processed, trace ID: ebfe7007-fefe-4339-b119-36870b3856a3
+2024-02-12 10:11:50,231 - basicLogger - DEBUG - Workout event being processed, trace ID: c824853b-45ff-4a34-af76-9cd081617d9c
+2024-02-12 10:11:50,231 - basicLogger - DEBUG - Workout event being processed, trace ID: 8e2e90b8-76f7-4ff6-9de3-c9fde51349fb
+2024-02-12 10:11:50,272 - basicLogger - DEBUG - Updated statistics ID: 15
+2024-02-12 10:11:50,276 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:11:51,197 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:11:55,228 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:11:55,255 - basicLogger - DEBUG - Updated statistics ID: 16
+2024-02-12 10:11:55,262 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:11:56,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:12:00,226 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:12:00,250 - basicLogger - DEBUG - Updated statistics ID: 17
+2024-02-12 10:12:00,252 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:12:01,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:12:05,226 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:12:05,252 - basicLogger - DEBUG - Updated statistics ID: 18
+2024-02-12 10:12:05,254 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:12:06,197 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:12:08,934 - basicLogger - INFO - Request for statistics has started
+2024-02-12 10:12:08,937 - basicLogger - DEBUG - Current statistics: {'num_workouts': 25, 'num_workout_logs': 25, 'max_freq_workout': 0, 'min_freq_workout': 0, 'last_update': datetime.datetime(2024, 2, 12, 10, 12, 1, 199462)}
+2024-02-12 10:12:08,939 - basicLogger - INFO - Request for statistics has completed
+2024-02-12 10:12:10,230 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:12:10,257 - basicLogger - DEBUG - Updated statistics ID: 19
+2024-02-12 10:12:10,258 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:12:11,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:12:15,229 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:12:15,271 - basicLogger - DEBUG - Updated statistics ID: 20
+2024-02-12 10:12:15,272 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:12:16,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:12:20,237 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:12:20,260 - basicLogger - DEBUG - Updated statistics ID: 21
+2024-02-12 10:12:20,260 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:12:21,197 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:12:25,229 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:12:25,254 - basicLogger - DEBUG - Updated statistics ID: 22
+2024-02-12 10:12:25,255 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:12:26,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:12:30,229 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:12:30,246 - basicLogger - DEBUG - Updated statistics ID: 23
+2024-02-12 10:12:30,247 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:12:31,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:12:35,228 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:12:35,244 - basicLogger - DEBUG - Updated statistics ID: 24
+2024-02-12 10:12:35,245 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:12:36,197 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:12:40,230 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:12:40,246 - basicLogger - DEBUG - Updated statistics ID: 25
+2024-02-12 10:12:40,247 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:12:41,197 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:12:45,233 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:12:45,247 - basicLogger - DEBUG - Updated statistics ID: 26
+2024-02-12 10:12:45,248 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:12:46,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:12:50,227 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:12:50,262 - basicLogger - DEBUG - Updated statistics ID: 27
+2024-02-12 10:12:50,263 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:12:51,196 - basicLogger - INFO - Periodic processing has started
+2024-02-12 10:12:55,229 - basicLogger - INFO - Workout events: 0 - Workout Log events: 0
+2024-02-12 10:12:55,254 - basicLogger - DEBUG - Updated statistics ID: 28
+2024-02-12 10:12:55,256 - basicLogger - INFO - Periodic processing has ended
+2024-02-12 10:12:56,197 - basicLogger - INFO - Periodic processing has started
