@@ -39,7 +39,7 @@ services:
       - my-db:/var/lib/mysql
   receiver:
     build:
-      context: ../receiver
+      context: ../Receiver
     restart: always
     ports:
       - '8080:8080'
@@ -47,7 +47,7 @@ services:
       - '8080'
   storage:
     build:
-      context: ../storage
+      context: ../Storage
     restart: always
     ports:
       - '8090:8090'
@@ -55,7 +55,7 @@ services:
       - '8090'
   processing:
     build:
-      context: ../processing
+      context: ../Processing
     restart: always
     ports:
       - '8100:8100'
@@ -63,7 +63,7 @@ services:
       - '8100'
   audit:
     build:
-      context: ../audit
+      context: ../Audit
     restart: always
     ports:
       - '8110:8110'
