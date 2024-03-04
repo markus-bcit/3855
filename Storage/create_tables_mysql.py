@@ -1,6 +1,6 @@
 import mysql.connector
 db_conn = mysql.connector.connect(host="markus-kafka.canadacentral.cloudapp.azure.com", user="user",
-                                  password="password", auth_plugin='mysql_native_password')
+                                  password="password", database="events", auth_plugin='mysql_native_password')
 db_cursor = db_conn.cursor()
 db_cursor.execute('''
           CREATE DATABASE IF NOT EXISTS events;
