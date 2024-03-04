@@ -84,7 +84,7 @@ def populate_stats():
     workout_log_data = req_workout_log.json()
         
     if (req_workout_log not in [200, 201]) or (req_workout_log not in [200, 201]):
-    logger.info('Workout events: %s - Workout Log events: %s', len(workout_data), len(workout_log_data))
+        logger.info('Workout events: %s - Workout Log events: %s', len(workout_data), len(workout_log_data))
     if len(workout_log_data) >= 1:
         for x in workout_log_data:
             if isinstance(x, dict) and 'traceId' in x:
