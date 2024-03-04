@@ -45,6 +45,8 @@ services:
       - '8080:8080'
     expose:
       - '8080'
+    depends_on:
+      - "kafka"
   storage:
     build:
       context: ../Storage
@@ -53,14 +55,21 @@ services:
       - '8090:8090'
     expose:
       - '8090'
+    depends_on:
+      - "kafka"
+      - "db"
+
   processing:
     build:
       context: ../Processing
     restart: always
     ports:
       - '8100:8100'
+    network_mode: "host"
     expose:
       - '8100'
+    depends_on:
+      - "storage"
   audit:
     build:
       context: ../Audit
@@ -69,6 +78,8 @@ services:
       - '8110:8110'
     expose:
       - '8110'
+    depends_on:
+      - "kafka"
 
 volumes:
   my-db:
