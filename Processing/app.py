@@ -85,21 +85,14 @@ def populate_stats():
         
     if (req_workout_log not in [200, 201]) or (req_workout_log not in [200, 201]):
         logger.info('Workout events: %s - Workout Log events: %s', len(workout_data), len(workout_log_data))
-    if len(workout_log_data) >= 1:
-        for x in workout_log_data:
-            if isinstance(x, dict) and 'traceId' in x:
+        if len(workout_log_data) >= 1:
+            for x in workout_log_data:
                 logger.debug('Workout Log event being processed, trace ID: %s', x['traceId'])
-            else:
-                logger.warning('Unable to process Workout Log event: %s', x)
-    if len(workout_data) >= 1:
-        for x in workout_data:
-            if isinstance(x, dict) and 'traceId' in x:
+        if len(workout_data) >= 1:
+            for x in workout_data:
                 logger.debug('Workout event being processed, trace ID: %s', x['traceId'])
-            else:
-                logger.warning('Unable to process Workout event: %s', x)
     else:
         logger.error('Workout returned: %s - Workout Log returned: %s', req_workout.status_code, req_workout_log.status_code)
-
     
     num_workouts = num_workouts + len(workout_data)
     num_workout_logs = num_workout_logs + len(workout_log_data)
