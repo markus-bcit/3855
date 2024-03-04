@@ -37,6 +37,38 @@ services:
       - '3306'
     volumes:
       - my-db:/var/lib/mysql
+  receiver:
+    build:
+      context: ../receiver
+    restart: always
+    ports:
+      - '8080:8080'
+    expose:
+      - '8080'
+  storage:
+    build:
+      context: ../storage
+    restart: always
+    ports:
+      - '8090:8090'
+    expose:
+      - '8090'
+  processing:
+    build:
+      context: ../processing
+    restart: always
+    ports:
+      - '8100:8100'
+    expose:
+      - '8100'
+  audit:
+    build:
+      context: ../audit
+    restart: always
+    ports:
+      - '8110:8110'
+    expose:
+      - '8110'
 
 volumes:
   my-db:
