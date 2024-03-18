@@ -5,3 +5,4 @@ SQLAlchemy
 pytz
 connexion[flask]
 connexion[uvicorn]
+flask_cors

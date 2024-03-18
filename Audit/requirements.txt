@@ -4,3 +4,4 @@ requests
 pykafka
 connexion[flask]
 connexion[uvicorn]
+flask_cors
