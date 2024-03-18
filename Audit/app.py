@@ -1,6 +1,6 @@
 from connexion import NoContent
 from pykafka import KafkaClient
-from connexion.middleware import MiddlewarePosition
+from flask_cors import CORS
 from starlette.middleware.cors import CORSMiddleware
 
 import requests
@@ -86,15 +86,8 @@ def get_workout_log(index):
 
 
 app = connexion.FlaskApp(__name__, specification_dir='')
+CORS(app.app)
 app.add_api("openapi.yml", strict_validation=True, validate_responses=True)
-app.app.add_middleware(
-    CORSMiddleware,
-    position=MiddlewarePosition.BEFORE_EXCEPTION,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 if __name__ == "__main__":
     app.run(port=8110)
