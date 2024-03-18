@@ -2,3 +2,5 @@ connexion
 swagger-ui-bundle
 requests
 pykafka
+connexion[flask]
+connexion[uvicorn]
