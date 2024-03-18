@@ -82,7 +82,8 @@ services:
     depends_on:
       - "kafka"
   dashboard:
-    image: dashboard
+    build:
+      context: ../dashboard-ui
     ports:
       - "3000:3000"
     depends_on:
