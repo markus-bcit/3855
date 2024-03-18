@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
 LABEL maintainer="mafonso4@my.bcit.ca"
 RUN apt-get update -y && apt-get install -y python3 python3-pip
