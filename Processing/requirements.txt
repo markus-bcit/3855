@@ -1,8 +1,9 @@
 connexion
-swagger-ui-bundle
-APScheduler
-SQLAlchemy
-pytz
-connexion[flask]
-connexion[uvicorn]
+swagger-ui-bundle==0.0.8
+APScheduler==3.6.3
+SQLAlchemy==1.3.22
+pytz==2022.1
+openapi-schema-validator
+openapi-spec-validator
+starlette
 flask_cors
