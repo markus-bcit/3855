@@ -3,3 +3,5 @@ swagger-ui-bundle
 APScheduler
 SQLAlchemy
 pytz
+connexion[flask]
+connexion[uvicorn]
