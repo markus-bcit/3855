@@ -8,6 +8,8 @@ import datetime
 import connexion
 from connexion import NoContent
 
+from connexion.middleware import MiddlewarePosition
+from starlette.middleware.cors import CORSMiddleware
 from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
 from base import Base
@@ -37,7 +39,8 @@ def get_stats():
 
     session = DB_SESSION()
 
-    current_stats = session.query(WorkoutStats).order_by(WorkoutStats.last_update.desc()).first()
+    current_stats = session.query(WorkoutStats).order_by(
+        WorkoutStats.last_update.desc()).first()
 
     if current_stats:
         stats_dict = {
@@ -57,12 +60,14 @@ def get_stats():
         session.close()
         return "Statistics do not exist", 404
 
+
 def populate_stats():
     logger.info("Periodic processing has started")
 
     session = DB_SESSION()
-    
-    current_stats = session.query(WorkoutStats).order_by(WorkoutStats.last_update.desc()).first()
+
+    current_stats = session.query(WorkoutStats).order_by(
+        WorkoutStats.last_update.desc()).first()
     if current_stats:
         num_workouts = current_stats.num_workouts
         num_workout_logs = current_stats.num_workout_logs
@@ -78,26 +83,32 @@ def populate_stats():
 
     current_datetime = datetime.datetime.now()
 
-    req_workout = requests.get(app_config['eventstore']['url'] + '/workout', params={'start_timestamp': last_update.strftime("%Y-%m-%dT%H:%M:%S"), 'end_timestamp': current_datetime.strftime("%Y-%m-%dT%H:%M:%S")})
-    req_workout_log = requests.get(app_config['eventstore']['url'] + '/workout/log', params={'start_timestamp': last_update.strftime("%Y-%m-%dT%H:%M:%S"), 'end_timestamp': current_datetime.strftime("%Y-%m-%dT%H:%M:%S")})
+    req_workout = requests.get(app_config['eventstore']['url'] + '/workout', params={'start_timestamp': last_update.strftime(
+        "%Y-%m-%dT%H:%M:%S"), 'end_timestamp': current_datetime.strftime("%Y-%m-%dT%H:%M:%S")})
+    req_workout_log = requests.get(app_config['eventstore']['url'] + '/workout/log', params={'start_timestamp': last_update.strftime(
+        "%Y-%m-%dT%H:%M:%S"), 'end_timestamp': current_datetime.strftime("%Y-%m-%dT%H:%M:%S")})
     workout_data = req_workout.json()
     workout_log_data = req_workout_log.json()
-        
+
     if (req_workout_log not in [200, 201]) or (req_workout_log not in [200, 201]):
-        logger.info('Workout events: %s - Workout Log events: %s', len(workout_data), len(workout_log_data))
+        logger.info('Workout events: %s - Workout Log events: %s',
+                    len(workout_data), len(workout_log_data))
         if len(workout_log_data) >= 1:
             for x in workout_log_data:
-                logger.debug('Workout Log event being processed, trace ID: %s', x['traceId'])
+                logger.debug(
+                    'Workout Log event being processed, trace ID: %s', x['traceId'])
         if len(workout_data) >= 1:
             for x in workout_data:
-                logger.debug('Workout event being processed, trace ID: %s', x['traceId'])
+                logger.debug(
+                    'Workout event being processed, trace ID: %s', x['traceId'])
     else:
-        logger.error('Workout returned: %s - Workout Log returned: %s', req_workout.status_code, req_workout_log.status_code)
-    
+        logger.error('Workout returned: %s - Workout Log returned: %s',
+                     req_workout.status_code, req_workout_log.status_code)
+
     num_workouts = num_workouts + len(workout_data)
     num_workout_logs = num_workout_logs + len(workout_log_data)
     frequencies = [entry['frequency'] for entry in workout_data]
-    if frequencies:  
+    if frequencies:
         max_freq_workout = max(frequencies)
         min_freq_workout = min(frequencies)
     else:
@@ -126,10 +137,18 @@ def init_scheduler():
     sched.add_job(populate_stats, 'interval', seconds=5)
     sched.start()
 
+
 # Initialize the Flask app
 app = connexion.FlaskApp(__name__, specification_dir='')
 app.add_api("openapi.yml", strict_validation=True, validate_responses=True)
-
+app.add_middleware(
+    CORSMiddleware,
+    position=MiddlewarePosition.BEFORE_EXCEPTION,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 if __name__ == "__main__":
     init_scheduler()
     app.run(port=8100)
