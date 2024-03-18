@@ -8,8 +8,8 @@ import datetime
 import connexion
 from connexion import NoContent
 
-from connexion.middleware import MiddlewarePosition
 from starlette.middleware.cors import CORSMiddleware
+from flask_cors import CORS
 from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
 from base import Base
@@ -140,15 +140,10 @@ def init_scheduler():
 
 # Initialize the Flask app
 app = connexion.FlaskApp(__name__, specification_dir='')
+CORS(app.app)
+app.app.config['CORS_HEADERS'] = 'Content-Type'
 app.add_api("openapi.yml", strict_validation=True, validate_responses=True)
-app.add_middleware(
-    CORSMiddleware,
-    position=MiddlewarePosition.BEFORE_EXCEPTION,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+
 if __name__ == "__main__":
     init_scheduler()
-    app.run(port=8100)
+    app.run(port=8100, host='0.0.0.0')
