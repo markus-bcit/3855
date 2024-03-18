@@ -25,8 +25,7 @@ logger = logging.getLogger('basicLogger')
 
 def get_workout(index):
     """ Get workout in History """
-    hostname = f"{app_config['events']['hostname']}:{
-        app_config['events']['port']}"
+    hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
     client = KafkaClient(hosts=hostname)
     topic = client.topics[str.encode(app_config["events"]["topic"])]
     # Here we reset the offset on start so that we retrieve
@@ -57,8 +56,7 @@ def get_workout(index):
 
 def get_workout_log(index):
     """ Get workout in History """
-    hostname = f"{app_config['events']['hostname']}:{
-        app_config['events']['port']}"
+    hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
     client = KafkaClient(hosts=hostname)
     topic = client.topics[str.encode(app_config["events"]["topic"])]
     # Here we reset the offset on start so that we retrieve
@@ -89,7 +87,7 @@ def get_workout_log(index):
 
 app = connexion.FlaskApp(__name__, specification_dir='')
 app.add_api("openapi.yml", strict_validation=True, validate_responses=True)
-app.add_middleware(
+app.app.add_middleware(
     CORSMiddleware,
     position=MiddlewarePosition.BEFORE_EXCEPTION,
     allow_origins=["*"],

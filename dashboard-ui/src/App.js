@@ -6,7 +6,7 @@ import AppStats from './components/AppStats'
 
 function App() {
 
-    const endpoints = ["http://markus-kafka.canadacentral.cloudapp.azure.com:8110/workout/log", "http://markus-kafka.canadacentral.cloudapp.azure.com:8110/workout"]
+    const endpoints = ["workout/log", "workout"]
 
     const rendered_endpoints = endpoints.map((endpoint) => {
         return <EndpointAudit key={endpoint} endpoint={endpoint}/>
