@@ -37,29 +37,27 @@ export default function AppStats() {
         <table className={"StatsTable"}>
           <tbody>
             <tr>
-              <th>Blood Pressure</th>
-              <th>Heart Rate</th>
+              <th>Workout</th>
+              <th>Workout Log</th>
             </tr>
             <tr>
-              <td># BP: {stats["num_bp_readings"]}</td>
-              <td># HR: {stats["num_hr_readings"]}</td>
+              <td># Workout: {stats["num_workouts"]}</td>
+              <td># Workout Logs: {stats["num_workout_logs"]}</td>
+            </tr>
+            <tr>
+              <td colspan="2">Max Workout Freq: {stats["max_freq_workout"]}</td>
             </tr>
             <tr>
               <td colspan="2">
-                Max BP Systolic: {stats["max_bp_sys_reading"]}
+                Min Workout Freq: {stats["min_freq_workout"]}
               </td>
             </tr>
             <tr>
-              <td colspan="2">
-                Max BR Diastolic: {stats["max_bp_dia_reading"]}
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">Max HR: {stats["max_bp_sys_reading"]}</td>
+              <td colspan="2">Max Freq Workout: {stats["max_freq_workout"]}</td>
             </tr>
           </tbody>
         </table>
-        <h3>Last Updated: {stats["last_updated"]}</h3>
+        <h3>Last Updated: {stats["last_update"]}</h3>
       </div>
     );
   }
