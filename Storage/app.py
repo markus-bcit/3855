@@ -1,3 +1,4 @@
+import time
 import connexion
 from connexion import NoContent
 from pykafka import KafkaClient
@@ -110,11 +111,27 @@ def get_workout_log(start_timestamp=None, end_timestamp=None):
         results_list.append(workout_log.to_dict())
     return results_list, 200
 
+def create_kafka_client():
+    max_retries = app_config['kafka']['max_retries']
+    retry_count = 0
+    hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
+    while retry_count < max_retries:
+        try:
+            logging.info(f"Attempting to connect to Kafka, retry {retry_count}")
+            client = KafkaClient(hosts=hostname)
+            topic = client.topics[str.encode(app_config["events"]["topic"])]
+            return client, topic
+        except Exception as e:
+            logging.error(f"Failed to connect to Kafka: {e}")
+            time.sleep(100)
+            retry_count += 1
+    raise Exception("Failed to connect to Kafka after maximum retries")
+
 def process_messages():
     """ Process event messages """
-    hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
-    client = KafkaClient(hosts=hostname)
-    topic = client.topics[str.encode(app_config["events"]["topic"])]
+    client, topic = create_kafka_client()  
+    # hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
+    # client = KafkaClient(hosts=hostname)
 
     # Create a consume on a consumer group, that only reads new messages
     # (uncommitted messages) when the service re-starts (i.e., it doesn't
