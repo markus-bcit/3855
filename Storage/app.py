@@ -2,7 +2,7 @@ import time
 import connexion
 from connexion import NoContent
 from pykafka import KafkaClient
-from pykafka.common import OffsetType
+from pykafka.common import OffsetType 
 from threading import Thread
 
 
@@ -28,8 +28,7 @@ with open('log_conf.yml', 'r') as f:
 
 logger = logging.getLogger('basicLogger')
 
-logger.debug("Conneting to DB. Hostname: %s,  Port %s",
-             app_config['datastore']['hostname'], app_config['datastore']['port'])
+logger.debug("Conneting to DB. Hostname: %s,  Port %s", app_config['datastore']['hostname'], app_config['datastore']['port'])
 DB_ENGINE = create_engine(
     f"mysql+pymysql://{app_config['datastore']['user']}:{app_config['datastore']['password']}@{app_config['datastore']['hostname']}:{app_config['datastore']['port']}/{app_config['datastore']['db']}")
 Base.metadata.bind = DB_ENGINE
@@ -112,54 +111,52 @@ def get_workout_log(start_timestamp=None, end_timestamp=None):
         results_list.append(workout_log.to_dict())
     return results_list, 200
 
-
 def process_messages():
     """ Process event messages """
     hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
-    client = KafkaClient(hosts=hostname)
-    topic = client.topics[str.encode(app_config["events"]["topic"])]
+    
+    max_retries = app_config['events']['max_retries']
+    retry_count = 0
+    connected = False
+    
+    while not connected and retry_count < max_retries:
+        try:
+            logger.info("Trying to connect to Kafka. Retry count: %d", retry_count)
+            client = KafkaClient(hosts=hostname)
+            topic = client.topics[str.encode(app_config["events"]["topic"])]
 
-    # Create a consumer on a consumer group, that only reads new messages
-    # (uncommitted messages) when the service re-starts (i.e., it doesn't
-    # read all the old messages from the history in the message queue).
-    consumer = topic.get_simple_consumer(consumer_group=b'event_group',
-                                         reset_offset_on_start=False,
-                                         auto_offset_reset=OffsetType.LATEST)
+            # Create a consumer on a consumer group
+            consumer = topic.get_simple_consumer(consumer_group=b'event_group', 
+                                                 reset_offset_on_start=False, 
+                                                 auto_offset_reset=OffsetType.LATEST)
+            connected = True
+        except Exception as e:
+            logger.error("Connection to Kafka failed: %s", str(e))
+            retry_count += 1
+            time.sleep(app_config['events']['retry_interval'])
+
+    if not connected:
+        logger.error("Failed to connect to Kafka after %d retries. Exiting...", max_retries)
+        return
+    
+    logger.info("Connected to Kafka successfully.")
+
     # This is blocking - it will wait for a new message
     for msg in consumer:
-        try:
-            msg_str = msg.value.decode('utf-8')
-            msg = json.loads(msg_str)
-            logger.info("Message: %s", msg)
-            payload = msg["payload"]
-            if msg["type"] == "workout":  # Change this to your event type
-                # Store the event1 (i.e., the payload) to the DB
-                create_workout(payload)
-            elif msg["type"] == "workoutlog":  # Change this to your event type
-                # Store the event2 (i.e., the payload) to the DB
-                log_workout(payload)
+        msg_str = msg.value.decode('utf-8')
+        msg = json.loads(msg_str)
+        logger.info("Message: %s", msg)
+        payload = msg["payload"]
+        if msg["type"] == "workout": # Change this to your event type
+            # Store the event1 (i.e., the payload) to the DB
+            create_workout(payload)
+        elif msg["type"] == "workoutlog": # Change this to your event type
+            # Store the event2 (i.e., the payload) to the DB
+            log_workout(payload)
+        
+        # Commit the new message as being read
+        consumer.commit_offsets()
 
-            # Commit the new message as being read
-            consumer.commit_offsets()
-        except KafkaException as e:
-            logger.error(f"Kafka error: {e}")
-            # Retry logic: retry up to 3 times with an increasing delay
-            retries = 0
-            while retries < 3:
-                retries += 1
-                logger.info(f"Retrying message processing, attempt {retries}")
-                time.sleep(retries * 2)  # Increasing delay for each retry
-                try:
-                    # Reconnect and resume consuming
-                    consumer = topic.get_simple_consumer(consumer_group=b'event_group',
-                                                         reset_offset_on_start=False,
-                                                         auto_offset_reset=OffsetType.LATEST)
-                    break  # If successful, exit retry loop
-                except KafkaException as e:
-                    logger.error(f"Retry failed: {e}")
-                    if retries == 3:
-                        logger.error("Max retries reached, abandoning message")
-                        break
 
 
 app = connexion.FlaskApp(__name__, specification_dir='')
@@ -167,7 +164,7 @@ app.add_api("openapi.yml", strict_validation=True, validate_responses=True)
 
 
 if __name__ == "__main__":
-    t1 = Thread(target=process_messages, daemon=True)
+    t1 = Thread(target=process_messages,daemon=True)
     t1.start()
 
     app.run(port=8090)
