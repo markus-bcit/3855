@@ -32,7 +32,7 @@ def create_kafka_client():
             return client, topic
         except Exception as e:
             logging.error(f"Failed to connect to Kafka: {e}")
-            time.sleep(5)  # Wait for 10 seconds before retrying
+            time.sleep(5)  
             retry_count += 1
     raise Exception("Failed to connect to Kafka after maximum retries")
 
