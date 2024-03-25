@@ -25,11 +25,9 @@ services:
       KAFKA_BROKER_ID: 1 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /home/<username>/kafka:/kafka/kafka-logs
     depends_on:
       - "zookeeper"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /home/<username>/kafka:/kafka/kafka-logs
   db:
     image: mysql:5.7
     restart: always
