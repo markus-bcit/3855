@@ -10,4 +10,4 @@ events:
  port: 9092
  topic: events
 kafka:
-  max_retries: 5
+  max_retries: 9999
