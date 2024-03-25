@@ -2,7 +2,7 @@ import time
 import connexion
 from connexion import NoContent
 from pykafka import KafkaClient
-from pykafka.common import OffsetType 
+from pykafka.common import OffsetType
 from threading import Thread
 
 
@@ -28,9 +28,13 @@ with open('log_conf.yml', 'r') as f:
 
 logger = logging.getLogger('basicLogger')
 
-logger.debug("Conneting to DB. Hostname: %s,  Port %s", app_config['datastore']['hostname'], app_config['datastore']['port'])
+logger.debug("Conneting to DB. Hostname: %s,  Port %s",
+             app_config['datastore']['hostname'], app_config['datastore']['port'])
 DB_ENGINE = create_engine(
-    f"mysql+pymysql://{app_config['datastore']['user']}:{app_config['datastore']['password']}@{app_config['datastore']['hostname']}:{app_config['datastore']['port']}/{app_config['datastore']['db']}")
+    f"mysql+pymysql://{app_config['datastore']['user']}:{app_config['datastore']['password']}@{app_config['datastore']['hostname']}:{app_config['datastore']['port']}/{app_config['datastore']['db']}", 
+    pool_size=10,
+    pool_recycle=300,
+    pool_pre_ping=True)
 Base.metadata.bind = DB_ENGINE
 DB_SESSION = sessionmaker(bind=DB_ENGINE)
 
@@ -111,13 +115,15 @@ def get_workout_log(start_timestamp=None, end_timestamp=None):
         results_list.append(workout_log.to_dict())
     return results_list, 200
 
+
 def create_kafka_client():
     max_retries = app_config['kafka']['max_retries']
     retry_count = 0
     hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
     while retry_count < max_retries:
         try:
-            logging.info(f"Attempting to connect to Kafka, retry {retry_count}")
+            logging.info(
+                f"Attempting to connect to Kafka, retry {retry_count}")
             client = KafkaClient(hosts=hostname)
             topic = client.topics[str.encode(app_config["events"]["topic"])]
             return client, topic
@@ -127,17 +133,18 @@ def create_kafka_client():
             retry_count += 1
     raise Exception("Failed to connect to Kafka after maximum retries")
 
+
 def process_messages():
     """ Process event messages """
-    client, topic = create_kafka_client()  
+    client, topic = create_kafka_client()
     # hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
     # client = KafkaClient(hosts=hostname)
 
     # Create a consume on a consumer group, that only reads new messages
     # (uncommitted messages) when the service re-starts (i.e., it doesn't
     # read all the old messages from the history in the message queue).
-    consumer = topic.get_simple_consumer(consumer_group=b'event_group', 
-                                         reset_offset_on_start=False, 
+    consumer = topic.get_simple_consumer(consumer_group=b'event_group',
+                                         reset_offset_on_start=False,
                                          auto_offset_reset=OffsetType.LATEST)
     # This is blocking - it will wait for a new message
     for msg in consumer:
@@ -145,13 +152,13 @@ def process_messages():
         msg = json.loads(msg_str)
         logger.info("Message: %s", msg)
         payload = msg["payload"]
-        if msg["type"] == "workout": # Change this to your event type
+        if msg["type"] == "workout":  # Change this to your event type
             # Store the event1 (i.e., the payload) to the DB
             create_workout(payload)
-        elif msg["type"] == "workoutlog": # Change this to your event type
+        elif msg["type"] == "workoutlog":  # Change this to your event type
             # Store the event2 (i.e., the payload) to the DB
             log_workout(payload)
-        
+
         # Commit the new message as being read
         consumer.commit_offsets()
 
@@ -161,7 +168,7 @@ app.add_api("openapi.yml", strict_validation=True, validate_responses=True)
 
 
 if __name__ == "__main__":
-    t1 = Thread(target=process_messages,daemon=True)
+    t1 = Thread(target=process_messages, daemon=True)
     t1.start()
 
     app.run(port=8090)
