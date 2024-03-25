@@ -17,6 +17,7 @@ import logging
 import logging.config
 import datetime
 import json
+import time
 
 with open('app_conf.yml', 'r') as f:
     app_config = yaml.safe_load(f.read())
@@ -33,6 +34,24 @@ DB_ENGINE = create_engine(
 Base.metadata.bind = DB_ENGINE
 DB_SESSION = sessionmaker(bind=DB_ENGINE)
 
+def connect_to_kafka_with_retry():
+    max_retries = app_config['kafka']['max_retries']
+    retry_count = 0
+    connected = False
+    while not connected and retry_count < max_retries:
+        try:
+            logger.info("Trying to connect to Kafka. Retry count: %d", retry_count)
+            hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
+            client = KafkaClient(hosts=hostname)
+            topic = client.topics[str.encode(app_config["events"]["topic"])]
+            connected = True
+        except Exception as e:
+            logger.error("Connection to Kafka failed. Error: %s", str(e))
+            time.sleep(app_config['kafka']['retry_interval'])
+            retry_count += 1
+    if not connected:
+        logger.error("Failed to connect to Kafka after %d retries. Exiting.", max_retries)
+       
 
 def create_workout(body):
     session = DB_SESSION()
@@ -112,6 +131,7 @@ def get_workout_log(start_timestamp=None, end_timestamp=None):
 
 def process_messages():
     """ Process event messages """
+    connect_to_kafka_with_retry()
     hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
     client = KafkaClient(hosts=hostname)
     topic = client.topics[str.encode(app_config["events"]["topic"])]
