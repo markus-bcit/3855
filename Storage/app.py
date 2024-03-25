@@ -1,3 +1,4 @@
+import time
 import connexion
 from connexion import NoContent
 from pykafka import KafkaClient
@@ -17,7 +18,6 @@ import logging
 import logging.config
 import datetime
 import json
-import time
 
 with open('app_conf.yml', 'r') as f:
     app_config = yaml.safe_load(f.read())
