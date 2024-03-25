@@ -1,4 +1,3 @@
-import time
 import connexion
 from connexion import NoContent
 from pykafka import KafkaClient
@@ -114,26 +113,8 @@ def get_workout_log(start_timestamp=None, end_timestamp=None):
 def process_messages():
     """ Process event messages """
     hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
-    max_retries = app_config['events']['max_retries']
-    retry_count = 0
-    connected = False
-    
-    while not connected and retry_count < max_retries:
-        try:
-            client = KafkaClient(hosts=hostname)
-            topic = client.topics[str.encode(app_config["events"]["topic"])]
-            connected = True
-        except Exception as e:
-            logger.error("Failed to connect to Kafka: %s", str(e))
-            retry_count += 1
-            time.sleep(app_config['events']['retry_interval'])
-
-    if not connected:
-        logger.error("Unable to connect to Kafka after %d retries. Exiting...", max_retries)
-        return
-    
-    logger.info("Connected to Kafka successfully.")
-            
+    client = KafkaClient(hosts=hostname)
+    topic = client.topics[str.encode(app_config["events"]["topic"])]
 
     # Create a consume on a consumer group, that only reads new messages
     # (uncommitted messages) when the service re-starts (i.e., it doesn't
