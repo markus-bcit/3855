@@ -114,33 +114,33 @@ def get_workout_log(start_timestamp=None, end_timestamp=None):
 def process_messages():
     """ Process event messages """
     hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
-    
     max_retries = app_config['events']['max_retries']
     retry_count = 0
     connected = False
     
     while not connected and retry_count < max_retries:
         try:
-            logger.info("Trying to connect to Kafka. Retry count: %d", retry_count)
             client = KafkaClient(hosts=hostname)
             topic = client.topics[str.encode(app_config["events"]["topic"])]
-
-            # Create a consumer on a consumer group
-            consumer = topic.get_simple_consumer(consumer_group=b'event_group', 
-                                                 reset_offset_on_start=False, 
-                                                 auto_offset_reset=OffsetType.LATEST)
             connected = True
         except Exception as e:
-            logger.error("Connection to Kafka failed: %s", str(e))
+            logger.error("Failed to connect to Kafka: %s", str(e))
             retry_count += 1
             time.sleep(app_config['events']['retry_interval'])
 
     if not connected:
-        logger.error("Failed to connect to Kafka after %d retries. Exiting...", max_retries)
+        logger.error("Unable to connect to Kafka after %d retries. Exiting...", max_retries)
         return
     
     logger.info("Connected to Kafka successfully.")
+            
 
+    # Create a consume on a consumer group, that only reads new messages
+    # (uncommitted messages) when the service re-starts (i.e., it doesn't
+    # read all the old messages from the history in the message queue).
+    consumer = topic.get_simple_consumer(consumer_group=b'event_group', 
+                                         reset_offset_on_start=False, 
+                                         auto_offset_reset=OffsetType.LATEST)
     # This is blocking - it will wait for a new message
     for msg in consumer:
         msg_str = msg.value.decode('utf-8')
@@ -156,7 +156,6 @@ def process_messages():
         
         # Commit the new message as being read
         consumer.commit_offsets()
-
 
 
 app = connexion.FlaskApp(__name__, specification_dir='')
