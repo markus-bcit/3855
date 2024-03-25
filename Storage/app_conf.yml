@@ -9,3 +9,5 @@ events:
  hostname: markus-kafka.canadacentral.cloudapp.azure.com
  port: 9092
  topic: events
+kafka:
+  max_retries: 5
