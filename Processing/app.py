@@ -34,6 +34,16 @@ Base.metadata.bind = DB_ENGINE
 DB_SESSION = sessionmaker(bind=DB_ENGINE)
 
 
+def log_startup():
+    logger.info("Processor has successfully started up")
+    log_event("0003")  # Publishing startup message
+
+
+def log_event(event_code):
+    event_message = f"Message published to event_log with code: {event_code}"
+    logger.info(event_message)
+
+
 def get_stats():
     logger.info("Request for statistics has started")
 
@@ -90,7 +100,9 @@ def populate_stats():
     workout_data = req_workout.json()
     workout_log_data = req_workout_log.json()
 
-    if (req_workout_log not in [200, 201]) or (req_workout_log not in [200, 201]):
+    if (req_workout_log.status_code in [200, 201]) and (req_workout_log.status_code in [200, 201]):
+        log_event("0004")  # Publishing message for periodic processing
+
         logger.info('Workout events: %s - Workout Log events: %s',
                     len(workout_data), len(workout_log_data))
         if len(workout_log_data) >= 1:
@@ -145,5 +157,6 @@ app.app.config['CORS_HEADERS'] = 'Content-Type'
 app.add_api("openapi.yml", strict_validation=True, validate_responses=True)
 
 if __name__ == "__main__":
+    log_startup()  # Log startup message
     init_scheduler()
     app.run(port=8100, host='0.0.0.0')
