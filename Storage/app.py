@@ -178,4 +178,4 @@ if __name__ == "__main__":
 
     publish_ready_message()
 
-    app.run(port=8080)
+    app.run(port=8090)
