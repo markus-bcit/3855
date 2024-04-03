@@ -84,6 +84,7 @@ services:
     volumes:
       - /home/azureuser/config/processing:/config
       - /home/azureuser/logs:/logs
+      - processing-db:/data
     ports:
       - '8100:8100'
     network_mode: "host"
@@ -129,3 +130,4 @@ services:
 
 volumes:
   my-db:
+  processing-db:
