@@ -7,7 +7,7 @@ export default function AppStats() {
   const [error, setError] = useState(null);
 
   const getStats = () => {
-    fetch(`http://markus-kafka.canadacentral.cloudapp.azure.com:8120/get_events`)
+    fetch(`http://markus-kafka.canadacentral.cloudapp.azure.com:8120/event_stats`)
       .then((res) => res.json())
       .then(
         (result) => {
@@ -33,13 +33,9 @@ export default function AppStats() {
   } else if (isLoaded === true) {
     return (
       <div>
-        <h1>Latest Stats</h1>
+        <h1>Event Logs</h1>
         <table className={"StatsTable"}>
           <tbody>
-            <tr>
-              <th>Workout</th>
-              <th>Workout Log</th>
-            </tr>
             <tr>
               <td>0001 Events Logged: {stats["0001"]}</td>
             </tr>
