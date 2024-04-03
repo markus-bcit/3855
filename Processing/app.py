@@ -35,10 +35,6 @@ DB_ENGINE = create_engine(f"sqlite:///{app_config['datastore']['filename']}")
 Base.metadata.bind = DB_ENGINE
 DB_SESSION = sessionmaker(bind=DB_ENGINE)
 
-
-def event_stats():
-    
-
 def get_stats():
     logger.info("Request for statistics has started")
 
