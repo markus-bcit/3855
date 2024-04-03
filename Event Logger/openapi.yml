@@ -1,0 +1,185 @@
+openapi: 3.0.0
+info:
+  description: A simple API for fitness tracking. Users can create workout plans based on their goals.
+  version: "1.0.0"
+  title: Fitness Planning API
+  contact:
+    email: mafonso4@my.bcit.ca
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+paths:
+  /event_stats:
+    get:
+      operationId: app.event_stats
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  "0001":
+                    type: integer
+                    description: Number of events with code 0001
+                  "0002":
+                    type: integer
+                    description: Number of events with code 0002
+                  "0003":
+                    type: integer
+                    description: Number of events with code 0003
+                  "0004":
+                    type: integer
+                    description: Number of events with code 0004
+  /consume_events:
+    post:
+      summary: Consume events from Kafka topic
+      responses:
+        "200":
+          description: Events consumed successfully
+        "500":
+          description: Internal server error
+#   /workout:
+#     post:
+#       tags:
+#         - users
+#       summary: Create a workout plan
+#       operationId: app.create_workout
+#       description: Create a tailored workout plan based on specified goals, frequency, and duration.
+#       requestBody:
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               required: 
+#               - type
+#               - startDate
+#               - endDate
+#               - frequency
+#               properties:
+#                 type:
+#                   type: string
+#                 startDate:
+#                   type: string
+#                   format: date-time
+#                 endDate:
+#                   type: string
+#                   format: date-time
+#                 frequency:
+#                   type: integer
+#       responses:
+#         '200':
+#           description: Successful response
+#           content:
+#             application/json:
+#               schema:
+#                 $ref: '#/components/schemas/Workout'
+#         '400':
+#           description: Bad input parameter
+#   /workout/log:
+#     post:
+#       tags:
+#         - users
+#       summary: Log a workout session
+#       operationId: app.log_workout
+#       description: Log a training day of a workout.
+#       requestBody:
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               required: 
+#               - workoutId
+#               - userId
+#               - startDate
+#               - endDate
+#               - exercises
+#               properties:
+#                 workoutId:
+#                   type: string
+#                   description: The ID of the associated workout.
+#                 userId:
+#                   type: string
+#                   description: The ID of the user logging the workout.
+#                 startDate:
+#                   type: string
+#                   format: date
+#                   description: The start date of the training session.
+#                 endDate:
+#                   type: string
+#                   format: date
+#                   description: The end date of the training session.
+#                 exercises:
+#                   type: array
+#                   items:
+#                       type: object
+#                       required: 
+#                       - exerciseName
+#                       - sets
+#                       - reps
+#                       properties:
+#                         exerciseName:
+#                           type: string
+#                         sets:
+#                           type: integer
+#                         reps:
+#                           type: integer
+#       responses:
+#         '200':
+#           description: Successful response
+#           content:
+#             application/json:
+#               schema:
+#                 $ref: '#/components/schemas/TrainingLog'
+#         '400':
+#           description: Bad input parameter
+# components:
+#   schemas:
+#     Workout:
+#       type: object
+#       properties:
+#         id:
+#           type: string
+#           format: uuid
+#         name:
+#           type: string
+#         description:
+#           type: string
+#         startDate:
+#           type: string
+#           format: date-time
+#         endDate:
+#           type: string
+#           format: date-time
+#         trainingDays:
+#           type: integer
+#         blocks:
+#           type: integer
+#     TrainingLog:
+#       type: object
+#       properties:
+#         trainingDayID:
+#           type: string
+#           format: uuid
+#         name:
+#           type: string
+#         startDate:
+#           type: string
+#           format: date-time
+#         endDate:
+#           type: string
+#           format: date-time
+#         exercises:
+#           type: array
+#           items:
+#             $ref: '#/components/schemas/Exercise'
+#     Exercise:
+#       type: object
+#       properties:
+#         exerciseName:
+#           type: string
+#         sets:
+#           type: integer
+#         reps:
+#           type: integer

@@ -85,7 +85,7 @@ if __name__ == "__main__":
     try:
         # Kafka producer setup
         client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
-        topic = client.topics[str.encode('event_log')]
+        topic = client.topics[str.encode(app_config['events']['topic2'])]
         producer = topic.get_sync_producer()
 
         # Message indicating Receiver is ready

@@ -9,3 +9,4 @@ events:
  hostname: markus-kafka.canadacentral.cloudapp.azure.com
  port: 9092
  topic: events
+ topic2: events_log
