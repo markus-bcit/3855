@@ -26,10 +26,10 @@ class events(Base):
         
         return {
             'id': self.id,
-            '0001': self.num_workouts,
-            '0002': self.num_workout_logs,
-            '0003': self.max_freq_workout,
-            '0004': self.min_freq_workout,
+            '0001': self.one,
+            '0002': self.two,
+            '0003': self.three,
+            '0004': self.four,
             'last_update': self.last_update.strftime("%Y-%m-%dT%H:%M:%S")
         }
     

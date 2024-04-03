@@ -6,10 +6,10 @@ c = conn.cursor()
 c.execute('''
           CREATE TABLE events
           (id INTEGER PRIMARY KEY ASC, 
-           0001 INTEGER NOT NULL,
-           0002 INTEGER NOT NULL,
-           0003 INTEGER NOT NULL,
-           0004 INTEGER NOT NULL,
+           one INTEGER NOT NULL,
+           two INTEGER NOT NULL,
+           three INTEGER NOT NULL,
+           four INTEGER NOT NULL,
            last_update VARCHAR(100) NOT NULL)
           ''')
 
