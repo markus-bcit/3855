@@ -68,64 +68,41 @@ def get_events():
 
 def populate_events():
     logger.info("Periodic processing has started")
-    
-    session = DB_SESSION()
 
-    current_stats = session.query(events).order_by(
-        events.last_update.desc()).first()
-    if current_stats:
-        one = current_stats.one
-        two = current_stats.two
-        three = current_stats.three
-        four = current_stats.four
-        last_update = current_stats.last_update
-    else:
-        one = 0
-        two = 0
-        three = 0
-        four = 0
-        last_update = datetime.datetime.now()
+    session = DB_SESSION()
 
     current_datetime = datetime.datetime.now()
 
+    new_one = 0
+    new_two = 0
+    new_three = 0
+    new_four = 0
 
-    req_workout = requests.get(app_config['eventstore']['url'] + '/workout', params={'start_timestamp': last_update.strftime(
-        "%Y-%m-%dT%H:%M:%S"), 'end_timestamp': current_datetime.strftime("%Y-%m-%dT%H:%M:%S")})
-    req_workout_log = requests.get(app_config['eventstore']['url'] + '/workout/log', params={'start_timestamp': last_update.strftime(
-        "%Y-%m-%dT%H:%M:%S"), 'end_timestamp': current_datetime.strftime("%Y-%m-%dT%H:%M:%S")})
-    workout_data = req_workout.json()
-    workout_log_data = req_workout_log.json()
-
-    if (req_workout_log not in [200, 201]) or (req_workout_log not in [200, 201]):
-        logger.info('Workout events: %s - Workout Log events: %s',
-                    len(workout_data), len(workout_log_data))
-        if len(workout_log_data) >= 1:
-            for x in workout_log_data:
-                logger.debug(
-                    'Workout Log event being processed, trace ID: %s', x['traceId'])
-        if len(workout_data) >= 1:
-            for x in workout_data:
-                logger.debug(
-                    'Workout event being processed, trace ID: %s', x['traceId'])
-    else:
-        logger.error('Workout returned: %s - Workout Log returned: %s',
-                     req_workout.status_code, req_workout_log.status_code)
-
-    num_workouts = num_workouts + len(workout_data)
-    num_workout_logs = num_workout_logs + len(workout_log_data)
-    frequencies = [entry['frequency'] for entry in workout_data]
-    if frequencies:
-        one = max(frequencies)
-        two = min(frequencies)
-    else:
-        max_freq_workout = 0
-        min_freq_workout = 0
+    client = create_kafka_client()
+    topic = client.topics[str.encode(app_config["events"]["topic2"])]
+    consumer = topic.get_simple_consumer(
+        reset_offset_on_start=True, consumer_timeout_ms=1000)
+    logger.info("Retrieving Event Logger")
+    try:
+        for msg in consumer:
+            msg_str = msg.value.decode('utf-8')
+            msg = json.loads(msg_str)
+            if msg.get('code') == '0001':
+                new_one += 1
+            elif msg.get('code') == '0002':
+                new_two += 1
+            elif msg.get('code') == '0003':
+                new_three += 1
+            elif msg.get('code') == '0004':
+                new_four += 1
+    except:
+        logger.error("No more messages found")
 
     new_stats = events(
-        one=one,
-        two=two,
-        three=three,
-        four=four,
+        one=new_one, 
+        two=new_two, 
+        three=new_three, 
+        four=new_four,
         last_update=current_datetime
     )
     session.add(new_stats)
@@ -137,10 +114,12 @@ def populate_events():
 
     logger.info("Periodic processing has ended")
 
+
 def create_kafka_client():
     max_retries = app_config['kafka']['max_retries']
     retry_count = 0
-    hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
+    hostname = f"{app_config['events']['hostname']}:{
+        app_config['events']['port']}"
     while retry_count < max_retries:
         try:
             logging.info(
@@ -152,24 +131,6 @@ def create_kafka_client():
             time.sleep(5)
             retry_count += 1
     raise Exception("Failed to connect to Kafka after maximum retries")
-
-
-
-def process_messages():
-    try:
-        client = create_kafka_client()
-        topic = client.topics[str.encode(app_config["events"]["topic"])]
-
-        consumer = topic.get_simple_consumer(consumer_group=b'event_group',
-                                             reset_offset_on_start=False,
-                                             auto_offset_reset=OffsetType.LATEST)
-        for msg in consumer:
-            msg_str = msg.value.decode('utf-8')
-            msg = json.loads(msg_str)
-            logger.info("Message: %s", msg)
-            consumer.commit_offsets()
-    except Exception as e:
-        logger.error('Error processing messages: %s', str(e))
 
 
 def init_scheduler():
