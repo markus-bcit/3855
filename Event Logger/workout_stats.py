@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, DateTime
 from base import Base
 import datetime
 
-class WorkoutStats(Base):
+class events(Base):
     """ Workout table """
 
     __tablename__ = "events"

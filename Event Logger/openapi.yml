@@ -11,7 +11,7 @@ info:
 paths:
   /event_stats:
     get:
-      operationId: app.event_stats
+      operationId: app.get_events
       responses:
         "200":
           description: Successful response

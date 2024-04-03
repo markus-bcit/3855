@@ -41,7 +41,7 @@ def get_workout(index):
         for msg in consumer:
             msg_str = msg.value.decode('utf-8')
             msg = json.loads(msg_str)
-            if current_index == index:
+            if (current_index == index) and (msg.get('type') == 'workout'):
                 return msg, 200
             current_index += 1
             # Find the event at the index you want and
@@ -72,7 +72,7 @@ def get_workout_log(index):
         for msg in consumer:
             msg_str = msg.value.decode('utf-8')
             msg = json.loads(msg_str)
-            if current_index == index:
+            if (current_index == index) and (msg.get('type') == 'workoutlog'):
                 return msg, 200
             current_index += 1
             # Find the event at the index you want and
