@@ -80,8 +80,7 @@ def populate_events():
 
     client = create_kafka_client()
     topic = client.topics[str.encode(app_config["events"]["topic2"])]
-    consumer = topic.get_simple_consumer(
-        reset_offset_on_start=True, consumer_timeout_ms=1000)
+    consumer = topic.get_simple_consumer(reset_offset_on_start=True, consumer_timeout_ms=1000)
     logger.info("Retrieving Event Logger")
     try:
         for msg in consumer:
@@ -118,8 +117,7 @@ def populate_events():
 def create_kafka_client():
     max_retries = app_config['kafka']['max_retries']
     retry_count = 0
-    hostname = f"{app_config['events']['hostname']}:{
-        app_config['events']['port']}"
+    hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
     while retry_count < max_retries:
         try:
             logging.info(
