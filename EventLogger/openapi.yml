@@ -32,14 +32,6 @@ paths:
                   "0004":
                     type: integer
                     description: Number of events with code 0004
-  # /consume_events:
-  #   post:
-  #     summary: Consume events from Kafka topic
-  #     responses:
-  #       "200":
-  #         description: Events consumed successfully
-  #       "500":
-  #         description: Internal server error
 #   /workout:
 #     post:
 #       tags:

@@ -40,7 +40,7 @@ DB_SESSION = sessionmaker(bind=DB_ENGINE)
 
 
 def get_events():
-    logger.info("Request for statistics has started")
+    logger.info("Request for event logger has started")
 
     session = DB_SESSION()
 
@@ -67,7 +67,7 @@ def get_events():
 
 
 def populate_events():
-    logger.info("Periodic processing has started")
+    logger.info("Periodic processing for event logger has started")
 
     session = DB_SESSION()
 
