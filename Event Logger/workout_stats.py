@@ -12,7 +12,7 @@ class WorkoutStats(Base):
     two = Column(Integer, nullable=False)
     three = Column(Integer, nullable=False)
     four = Column(Integer, nullable=False)
-    last_update = Column(DateTime, nullable=False)
+    last_update = Column(DateTime, nullable=True)
 
     
     def __init__(self, one, two, three, four, last_update):
