@@ -5,3 +5,10 @@ scheduler:
  period_sec: 5
 eventstore:
  url: http://markus-kafka.canadacentral.cloudapp.azure.com:8090
+events:
+ hostname: markus-kafka.canadacentral.cloudapp.azure.com
+ port: 9092
+ topic: events
+ topic2: events_log
+kafka:
+  max_retries: 9999

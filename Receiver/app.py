@@ -81,14 +81,11 @@ app.add_api("openapi.yml", strict_validation=True, validate_responses=True)
 
 
 if __name__ == "__main__":
-    # Publishing message to event_log topic after successful start and Kafka connection
     try:
-        # Kafka producer setup
         client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
         topic = client.topics[str.encode(app_config['events']['topic2'])]
         producer = topic.get_sync_producer()
 
-        # Message indicating Receiver is ready
         ready_msg = {
             "type": "startup",
             "message": "Receiver is ready to receive messages on its RESTful API",
@@ -96,7 +93,6 @@ if __name__ == "__main__":
         }
         ready_msg_str = json.dumps(ready_msg)
 
-        # Publish message to event_log topic
         producer.produce(ready_msg_str.encode('utf-8'))
         logger.info('Published message to event_log topic: %s', ready_msg_str)
     except Exception as e:

@@ -136,7 +136,7 @@ def create_kafka_client():
 def publish_ready_message():
     try:
         client = create_kafka_client()
-        topic = client.topics[str.encode('event_log')]
+        topic = client.topics[str.encode(app_config["events"]["topic2"])]
         producer = topic.get_sync_producer()
 
         ready_msg = {

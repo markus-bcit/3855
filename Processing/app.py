@@ -4,10 +4,11 @@ import logging.config
 import uuid
 import requests
 import datetime
+import time
 
 import connexion
 from connexion import NoContent
-
+from pykafka import KafkaClient
 from starlette.middleware.cors import CORSMiddleware
 from flask_cors import CORS
 from sqlalchemy import create_engine, func
@@ -32,16 +33,6 @@ logger = logging.getLogger('basicLogger')
 DB_ENGINE = create_engine(f"sqlite:///{app_config['datastore']['filename']}")
 Base.metadata.bind = DB_ENGINE
 DB_SESSION = sessionmaker(bind=DB_ENGINE)
-
-
-def log_startup():
-    logger.info("Processor has successfully started up")
-    log_event("0003")  # Publishing startup message
-
-
-def log_event(event_code):
-    event_message = f"Message published to event_log with code: {event_code}"
-    logger.info(event_message)
 
 
 def get_stats():
@@ -100,9 +91,7 @@ def populate_stats():
     workout_data = req_workout.json()
     workout_log_data = req_workout_log.json()
 
-    if (req_workout_log.status_code in [200, 201]) and (req_workout_log.status_code in [200, 201]):
-        log_event("0004")  # Publishing message for periodic processing
-
+    if (req_workout_log not in [200, 201]) or (req_workout_log not in [200, 201]):
         logger.info('Workout events: %s - Workout Log events: %s',
                     len(workout_data), len(workout_log_data))
         if len(workout_log_data) >= 1:
@@ -143,6 +132,21 @@ def populate_stats():
 
     logger.info("Periodic processing has ended")
 
+def create_kafka_client():
+    max_retries = app_config['kafka']['max_retries']
+    retry_count = 0
+    hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
+    while retry_count < max_retries:
+        try:
+            logging.info(
+                f"Attempting to connect to Kafka, retry {retry_count}")
+            client = KafkaClient(hosts=hostname)
+            return client
+        except Exception as e:
+            logging.error(f"Failed to connect to Kafka: {e}")
+            time.sleep(5)
+            retry_count += 1
+    raise Exception("Failed to connect to Kafka after maximum retries")
 
 def init_scheduler():
     sched = BackgroundScheduler(daemon=True, timezone='America/Los_Angeles')
@@ -157,6 +161,5 @@ app.app.config['CORS_HEADERS'] = 'Content-Type'
 app.add_api("openapi.yml", strict_validation=True, validate_responses=True)
 
 if __name__ == "__main__":
-    log_startup()  # Log startup message
     init_scheduler()
     app.run(port=8100, host='0.0.0.0')
