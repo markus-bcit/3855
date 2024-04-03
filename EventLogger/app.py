@@ -98,9 +98,9 @@ def populate_events():
         logger.error("No more messages found")
 
     new_stats = events(
-        one=new_one, 
-        two=new_two, 
-        three=new_three, 
+        one=new_one,
+        two=new_two,
+        three=new_three,
         four=new_four,
         last_update=current_datetime
     )
