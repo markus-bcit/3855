@@ -94,7 +94,18 @@ services:
     depends_on:
       - "processing"
       - "audit"
-
+  eventLogger:
+    build:
+      context: ../EventLogger
+    restart: always
+    ports:
+      - '8120:8120'
+    expose:
+      - '8120'
+    depends_on:
+      - "kafka"
+      - "storage"
+      - "receiver"
 
 volumes:
   my-db:
