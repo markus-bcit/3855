@@ -117,7 +117,7 @@ def populate_stats():
                 "type": "startup",
                 "message": "Periodic processing has started",
                 "code": "0004",
-                "id": uuid.uuid4()
+                "id": f"{uuid.uuid4()}"
             }
             ready_msg_str = json.dumps(ready_msg)
 
@@ -162,7 +162,7 @@ def publish_ready_message():
             "type": "startup",
             "message": "Processing is ready to consume messages from the events topic",
             "code": "0003",
-            "id": uuid.uuid4()
+            "id": f"{uuid.uuid4()}"
         }
         ready_msg_str = json.dumps(ready_msg)
 
