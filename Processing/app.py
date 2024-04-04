@@ -151,21 +151,23 @@ def populate_stats():
 
     logger.info("Periodic processing has ended")
 
-def create_kafka_client():
-    max_retries = app_config['kafka']['max_retries']
-    retry_count = 0
-    hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
-    while retry_count < max_retries:
-        try:
-            logging.info(
-                f"Attempting to connect to Kafka, retry {retry_count}")
-            client = KafkaClient(hosts=hostname)
-            return client
-        except Exception as e:
-            logging.error(f"Failed to connect to Kafka: {e}")
-            time.sleep(5)
-            retry_count += 1
-    raise Exception("Failed to connect to Kafka after maximum retries")
+def publish_ready_message():
+    try:
+        client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
+        topic = client.topics[str.encode(app_config["events"]["topic2"])]
+        producer = topic.get_sync_producer()
+
+        ready_msg = {
+            "type": "startup",
+            "message": "Processing is ready to consume messages from the events topic",
+            "code": "0003"
+        }
+        ready_msg_str = json.dumps(ready_msg)
+
+        producer.produce(ready_msg_str.encode('utf-8'))
+        logger.info('Published message to event_log topic: %s', ready_msg_str)
+    except Exception as e:
+        logger.error('Error publishing message to event_log topic: %s', str(e))
 
 def init_scheduler():
     sched = BackgroundScheduler(daemon=True, timezone='America/Los_Angeles')
@@ -180,21 +182,6 @@ app.app.config['CORS_HEADERS'] = 'Content-Type'
 app.add_api("openapi.yml", strict_validation=True, validate_responses=True)
 
 if __name__ == "__main__":
+    publish_ready_message()
     init_scheduler()
-    try:
-        client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
-        topic = client.topics[str.encode(app_config['events']['topic2'])]
-        producer = topic.get_sync_producer()
-
-        ready_msg = {
-            "type": "startup",
-            "message": "Processing is ready to receive messages on its RESTful API",
-            "code": "0003"
-        }
-        ready_msg_str = json.dumps(ready_msg)
-
-        producer.produce(ready_msg_str.encode('utf-8'))
-        logger.info('Published message to event_log topic: %s', ready_msg_str)
-    except Exception as e:
-        logger.error('Error publishing message to event_log topic: %s', str(e))
     app.run(port=8100, host='0.0.0.0')
