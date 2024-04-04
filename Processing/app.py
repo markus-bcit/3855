@@ -153,7 +153,7 @@ def populate_stats():
 
 def publish_ready_message():
     try:
-        client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
+        client = create_kafka_client()
         topic = client.topics[str.encode(app_config["events"]["topic2"])]
         producer = topic.get_sync_producer()
 
@@ -174,6 +174,21 @@ def init_scheduler():
     sched.add_job(populate_stats, 'interval', seconds=5)
     sched.start()
 
+def create_kafka_client():
+    max_retries = app_config['kafka']['max_retries']
+    retry_count = 0
+    hostname = f"{app_config['events']['hostname']}:{app_config['events']['port']}"
+    while retry_count < max_retries:
+        try:
+            logging.info(
+                f"Attempting to connect to Kafka, retry {retry_count}")
+            client = KafkaClient(hosts=hostname)
+            return client
+        except Exception as e:
+            logging.error(f"Failed to connect to Kafka: {e}")
+            time.sleep(5)
+            retry_count += 1
+    raise Exception("Failed to connect to Kafka after maximum retries")
 
 # Initialize the Flask app
 app = connexion.FlaskApp(__name__, specification_dir='')
