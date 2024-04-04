@@ -53,9 +53,9 @@ services:
       - /home/azureuser/config/receiver:/config
       - /home/azureuser/logs:/logs
     ports:
-      - '8080:8080'
-    expose:
-      - '8080'
+      - "8080"
+    networks:
+      - "api.network"
     depends_on:
       - "kafka"
   storage:
@@ -68,9 +68,9 @@ services:
       - /home/azureuser/config/storage:/config
       - /home/azureuser/logs:/logs
     ports:
-      - '8090:8090'
-    expose:
-      - '8090'
+      - "8090"
+    networks:
+      - "api.network"
     depends_on:
       - "kafka"
       - "db"
@@ -86,10 +86,9 @@ services:
       - /home/azureuser/logs:/logs
       - processing-db:/data
     ports:
-      - '8100:8100'
-    network_mode: "host"
-    expose:
-      - '8100'
+      - "8100"
+    networks:
+      - "api.network"
     depends_on:
       - "storage"
   audit:
@@ -102,16 +101,18 @@ services:
       - /home/azureuser/config/audit_log:/config
       - /home/azureuser/logs:/logs
     ports:
-      - '8110:8110'
-    expose:
-      - '8110'
+      - "8110"
+    networks:
+      - "api.network"
     depends_on:
       - "kafka"
   dashboard:
     build:
       context: ../dashboard-ui
     ports:
-      - "3000:3000"
+      - "3000"
+    networks:
+      - "api.network"
     depends_on:
       - "processing"
       - "audit"
@@ -120,14 +121,31 @@ services:
       context: ../EventLogger
     restart: always
     ports:
-      - '8120:8120'
-    expose:
-      - '8120'
+      - "8120"
+    networks:
+      - "api.network"
     depends_on:
       - "kafka"
       - "storage"
       - "receiver"
+  nginx:
+    image: nginx:latest
+    volumes:
+      - /home/azureuser/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - receiver
+      - storage
+      - processing
+      - audit_log
+      - dashboard-ui
+    ports:
+      - "80:80"
+    networks:
+      - "api.network"
 
 volumes:
   my-db:
   processing-db:
+
+networks:
+  api.network:
