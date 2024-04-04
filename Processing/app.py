@@ -65,22 +65,6 @@ def get_stats():
 def populate_stats():
     logger.info("Periodic processing has started")
     
-    try:
-        client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
-        topic = client.topics[str.encode(app_config['events']['topic2'])]
-        producer = topic.get_sync_producer()
-
-        ready_msg = {
-            "type": "startup",
-            "message": "Periodic processing has started",
-            "code": "0004"
-        }
-        ready_msg_str = json.dumps(ready_msg)
-
-        producer.produce(ready_msg_str.encode('utf-8'))
-        logger.info('Published message to event_log topic: %s', ready_msg_str)
-    except Exception as e:
-        logger.error('Error publishing message to event_log topic: %s', str(e))
     
     session = DB_SESSION()
 
@@ -123,6 +107,24 @@ def populate_stats():
         logger.error('Workout returned: %s - Workout Log returned: %s',
                      req_workout.status_code, req_workout_log.status_code)
 
+    if (len(workout_data) + len(workout_log_data) > 25):
+        try:
+            client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
+            topic = client.topics[str.encode(app_config['events']['topic2'])]
+            producer = topic.get_sync_producer()
+
+            ready_msg = {
+                "type": "startup",
+                "message": "Periodic processing has started",
+                "code": "0004"
+            }
+            ready_msg_str = json.dumps(ready_msg)
+
+            producer.produce(ready_msg_str.encode('utf-8'))
+            logger.info('Published message to event_log topic: %s', ready_msg_str)
+        except Exception as e:
+            logger.error('Error publishing message to event_log topic: %s', str(e))
+            
     num_workouts = num_workouts + len(workout_data)
     num_workout_logs = num_workout_logs + len(workout_log_data)
     frequencies = [entry['frequency'] for entry in workout_data]
