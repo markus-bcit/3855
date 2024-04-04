@@ -136,7 +136,7 @@ services:
       - receiver
       - storage
       - processing
-      - audit_log
+      - audit
       - dashboard-ui
     ports:
       - "80:80"
