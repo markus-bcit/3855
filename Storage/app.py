@@ -142,7 +142,8 @@ def publish_ready_message():
         ready_msg = {
             "type": "startup",
             "message": "Receiver is ready to consume messages from the events topic",
-            "code": "0002"
+            "code": "0002",
+            "id": uuid.uuid4()
         }
         ready_msg_str = json.dumps(ready_msg)
 
