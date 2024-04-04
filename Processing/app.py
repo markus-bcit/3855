@@ -107,7 +107,7 @@ def populate_stats():
         logger.error('Workout returned: %s - Workout Log returned: %s',
                      req_workout.status_code, req_workout_log.status_code)
 
-    if (len(workout_data) + len(workout_log_data) > 25):
+    if (len(workout_data) + len(workout_log_data) > app_config['kafka']['threshold']):
         try:
             client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
             topic = client.topics[str.encode(app_config['events']['topic2'])]
