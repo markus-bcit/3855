@@ -4,7 +4,7 @@ datastore:
 scheduler:
  period_sec: 5
 eventstore:
- url: http://markus-kafka.canadacentral.cloudapp.azure.com:8090
+ url: http://markus-kafka.canadacentral.cloudapp.azure.com/storage
 events:
  hostname: markus-kafka.canadacentral.cloudapp.azure.com
  port: 9092
