@@ -10,7 +10,7 @@ export default function EndpointAudit(props) {
 
   const getAudit = () => {
     fetch(
-      `http://markus-kafka.canadacentral.cloudapp.azure.com:8110/${props.endpoint}?index=${rand_val}`
+      `http://markus-kafka.canadacentral.cloudapp.azure.com/${props.endpoint}?index=${rand_val}`
     )
       .then((res) => res.json())
       .then(

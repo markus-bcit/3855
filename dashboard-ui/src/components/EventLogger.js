@@ -7,7 +7,7 @@ export default function AppStats() {
   const [error, setError] = useState(null);
 
   const getStats = () => {
-    fetch(`http://markus-kafka.canadacentral.cloudapp.azure.com:8120/event_stats`)
+    fetch(`http://markus-kafka.canadacentral.cloudapp.azure.com/event_logger`)
       .then((res) => res.json())
       .then(
         (result) => {
