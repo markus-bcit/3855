@@ -115,7 +115,7 @@ def populate_stats():
 
             ready_msg = {
                 "type": "startup",
-                "message": "Periodic processing has started",
+                "message": "Periodic processing has started over threshold.",
                 "code": "0004",
                 "id": f"{uuid.uuid4()}"
             }
