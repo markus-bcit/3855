@@ -12,6 +12,7 @@ from base import Base
 from workout import Workout
 from workout_log import WorkoutLog
 from base import Base
+import uuid
 import datetime
 import yaml
 import logging

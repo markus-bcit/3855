@@ -6,7 +6,7 @@ import requests
 import datetime
 import time
 import json
-
+import uuid
 import connexion
 from connexion import NoContent
 from pykafka import KafkaClient
