@@ -164,6 +164,13 @@ def process_messages():
             msg_str = msg.value.decode('utf-8')
             msg = json.loads(msg_str)
             logger.info("Message: %s", msg)
+            payload = msg["payload"]
+            if msg["type"] == "workout":  # Change this to your event type
+                # Store the event1 (i.e., the payload) to the DB
+                create_workout(payload)
+            elif msg["type"] == "workoutlog":  # Change this to your event type
+                # Store the event2 (i.e., the payload) to the DB
+                log_workout(payload)
             consumer.commit_offsets()
     except Exception as e:
         logger.error('Error processing messages: %s', str(e))
