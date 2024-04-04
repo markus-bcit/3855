@@ -117,6 +117,8 @@ services:
       - "processing"
       - "audit"
   eventlogger:
+    environment:
+      - TARGET_ENV=test
     build:
       context: ../EventLogger
     restart: always
