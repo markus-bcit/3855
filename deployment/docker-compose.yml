@@ -137,7 +137,7 @@ services:
       - storage
       - processing
       - audit
-      - dashboard-ui
+      - dashboard
     ports:
       - "80:80"
     networks:
