@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Lint') {
+            steps {
+                script {
+                        def files = findFiles(glob: "*.py")
+                        for (file in files) {
+                            sh "pylint --fail-under 5 $file"
+                        }
+                    }
+
+            }
+        }
+        stage('Security Scan') {
+            steps {
+                // Add your chosen security scanning tool command here
+                // Example: sh 'safety check'
+            }
+        }
+        stage('Package') {
+            steps {
+                script {
+                    docker.build('<docker_image_name>') // Replace <docker_image_name> with your desired image name
+                    docker.withRegistry('https://registry.hub.docker.com', '<dockerhub_credentials>') {
+                        docker.image('<docker_image_name>').push('latest')
+                    }
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    // SSH into your 3855 VM and execute docker-compose up -d
+                    sshagent(['<jenkins_ssh_credentials>']) {
+                        sh 'ssh user@3855-vm "cd /path/to/docker-compose; docker-compose pull; docker-compose up -d"'
+                    }
+                }
+            }
+        }
+    }
+    
+    post {
+        success {
+            // Trigger the downstream jobs or perform any other post-build actions
+        }
+    }
+}
