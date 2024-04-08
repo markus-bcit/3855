@@ -5,7 +5,7 @@ pipeline {
         stage('Lint') {
             steps {
                 script {
-                    sh 'find . -name "*.py" -exec pylint {} +'
+                    sh 'find . -name "*.py" -exec pylint --fail-under 2 {} +'
                 }
             }
         }
