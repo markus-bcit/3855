@@ -7,7 +7,7 @@ pipeline {
                 script {
                     def pythonFiles = findFiles(glob: '**/*.py')
                     pythonFiles.each { file ->
-                        sh 'pylint --fail-under 5 ${file}"'
+                        sh 'pylint --fail-under 5 ${file}'
                     }
                 }
             }
