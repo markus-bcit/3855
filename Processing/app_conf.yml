@@ -12,4 +12,4 @@ events:
  topic2: events_log
 kafka:
   max_retries: 9999
-  threshold: 25
+  threshold: 5
