@@ -12,6 +12,7 @@ pipeline {
         stage('Security Scan') {
             steps {
                 script {
+                    sh 'pip install safety'
                     def safety_output = sh(script: 'safety check --full-report', returnStdout: true).trim()
                     echo "Safety Scan Results: ${safety_output}"
                     
