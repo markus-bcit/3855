@@ -108,7 +108,7 @@ def populate_stats():
                      req_workout.status_code, req_workout_log.status_code)
         
     logger.info('COUNT %s', (len(workout_data) + len(workout_log_data)))
-    if (len(workout_data) + len(workout_log_data) >= 5):
+    if (len(workout_data) + len(workout_log_data) >= app_config['kafka']['threshold']):
         try:
             client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
             topic = client.topics[str.encode(app_config['events']['topic2'])]
