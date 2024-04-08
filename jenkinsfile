@@ -5,12 +5,15 @@ pipeline {
         stage('Lint') {
             steps {
                 script {
-                        def files = findFiles(glob: "*.py")
+                    def files = findFiles(glob: "**/*.py") // Search for Python files recursively in all directories
+                    if (files) {
                         for (file in files) {
-                            sh "pylint --fail-under 5 $file"
+                            sh "pylint --fail-under 5 ${file.getRemote()}" // Use getRemote() to get the absolute file path
                         }
+                    } else {
+                        echo "No Python files found in the workspace"
                     }
-
+                }
             }
         }
         stage('Security Scan') {
