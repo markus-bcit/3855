@@ -49,10 +49,4 @@ pipeline {
             }
         }
     }
-    
-    post {
-        success {
-            // Trigger the downstream jobs or perform any other post-build actions
-        }
-    }
 }
