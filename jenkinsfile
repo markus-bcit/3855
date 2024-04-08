@@ -5,7 +5,7 @@ pipeline {
         stage('Lint') {
             steps {
                 script {
-                   sh 'pylint --fail-under 5 .'
+                   sh 'pylint --fail-under 5 /'
                 }
             }
         }
