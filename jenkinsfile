@@ -5,10 +5,7 @@ pipeline {
         stage('Lint') {
             steps {
                 script {
-                    def pythonFiles = findFiles(glob: '**/*.py')
-                    pythonFiles.each { file ->
-                        sh 'pylint --fail-under 5 ${file}'
-                    }
+                    sh 'find . -name "*.py" -exec pylint {} +'
                 }
             }
         }
