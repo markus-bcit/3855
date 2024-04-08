@@ -106,6 +106,9 @@ services:
       - "kafka"
       - "storage"
       - "receiver"
+    volumes:
+      - eventlogger-db:/data
 
 volumes:
   my-db:
+  eventlogger-db:
