@@ -123,9 +123,7 @@ services:
       context: ../EventLogger
     restart: always
     ports:
-      - "8120"
-    networks:
-      - "api.network"
+      - "8120:8120"
     depends_on:
       - "kafka"
       - "storage"
