@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     sh 'pip install safety --break-system-packages'
-                    def safety_output = sh(script: 'safety check --full-report', returnStdout: true).trim()
+                    def safety_output = sh(script: 'safety check --full-report || true', returnStdout: true).trim()
                     echo "Safety Scan Results: ${safety_output}"
                     
                     if (safety_output.contains("InsecurePackage")) {
