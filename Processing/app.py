@@ -6,7 +6,7 @@ import requests
 import datetime
 import time
 import json
-
+import uuid
 import connexion
 from connexion import NoContent
 from pykafka import KafkaClient
@@ -77,22 +77,6 @@ def get_stats():
 def populate_stats():
     logger.info("Periodic processing has started")
     
-    try:
-        client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
-        topic = client.topics[str.encode(app_config['events']['topic2'])]
-        producer = topic.get_sync_producer()
-
-        ready_msg = {
-            "type": "startup",
-            "message": "Periodic processing has started",
-            "code": "0004"
-        }
-        ready_msg_str = json.dumps(ready_msg)
-
-        producer.produce(ready_msg_str.encode('utf-8'))
-        logger.info('Published message to event_log topic: %s', ready_msg_str)
-    except Exception as e:
-        logger.error('Error publishing message to event_log topic: %s', str(e))
     
     session = DB_SESSION()
 
@@ -134,7 +118,27 @@ def populate_stats():
     else:
         logger.error('Workout returned: %s - Workout Log returned: %s',
                      req_workout.status_code, req_workout_log.status_code)
+        
+    logger.info('COUNT %s', (len(workout_data) + len(workout_log_data)))
+    if (len(workout_data) + len(workout_log_data) >= app_config['kafka']['threshold']):
+        try:
+            client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
+            topic = client.topics[str.encode(app_config['events']['topic2'])]
+            producer = topic.get_sync_producer()
 
+            ready_msg = {
+                "type": "startup",
+                "message": "Periodic processing has started over threshold.",
+                "code": "0004",
+                "id": f"{uuid.uuid4()}"
+            }
+            ready_msg_str = json.dumps(ready_msg)
+
+            producer.produce(ready_msg_str.encode('utf-8'))
+            logger.info('Published message to event_log topic: %s', ready_msg_str)
+        except Exception as e:
+            logger.error('Error publishing message to event_log topic: %s', str(e))
+            
     num_workouts = num_workouts + len(workout_data)
     num_workout_logs = num_workout_logs + len(workout_log_data)
     frequencies = [entry['frequency'] for entry in workout_data]
@@ -161,6 +165,30 @@ def populate_stats():
 
     logger.info("Periodic processing has ended")
 
+def publish_ready_message():
+    try:
+        client = create_kafka_client()
+        topic = client.topics[str.encode(app_config["events"]["topic2"])]
+        producer = topic.get_sync_producer()
+
+        ready_msg = {
+            "type": "startup",
+            "message": "Processing is ready to consume messages from the events topic",
+            "code": "0003",
+            "id": f"{uuid.uuid4()}"
+        }
+        ready_msg_str = json.dumps(ready_msg)
+
+        producer.produce(ready_msg_str.encode('utf-8'))
+        logger.info('Published message to event_log topic: %s', ready_msg_str)
+    except Exception as e:
+        logger.error('Error publishing message to event_log topic: %s', str(e))
+
+def init_scheduler():
+    sched = BackgroundScheduler(daemon=True, timezone='America/Los_Angeles')
+    sched.add_job(populate_stats, 'interval', seconds=5)
+    sched.start()
+
 def create_kafka_client():
     max_retries = app_config['kafka']['max_retries']
     retry_count = 0
@@ -177,12 +205,6 @@ def create_kafka_client():
             retry_count += 1
     raise Exception("Failed to connect to Kafka after maximum retries")
 
-def init_scheduler():
-    sched = BackgroundScheduler(daemon=True, timezone='America/Los_Angeles')
-    sched.add_job(populate_stats, 'interval', seconds=5)
-    sched.start()
-
-
 # Initialize the Flask app
 app = connexion.FlaskApp(__name__, specification_dir='')
 CORS(app.app)
@@ -190,21 +212,6 @@ app.app.config['CORS_HEADERS'] = 'Content-Type'
 app.add_api("openapi.yml", strict_validation=True, validate_responses=True)
 
 if __name__ == "__main__":
+    publish_ready_message()
     init_scheduler()
-    try:
-        client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
-        topic = client.topics[str.encode(app_config['events']['topic2'])]
-        producer = topic.get_sync_producer()
-
-        ready_msg = {
-            "type": "startup",
-            "message": "Processing is ready to receive messages on its RESTful API",
-            "code": "0003"
-        }
-        ready_msg_str = json.dumps(ready_msg)
-
-        producer.produce(ready_msg_str.encode('utf-8'))
-        logger.info('Published message to event_log topic: %s', ready_msg_str)
-    except Exception as e:
-        logger.error('Error publishing message to event_log topic: %s', str(e))
     app.run(port=8100, host='0.0.0.0')

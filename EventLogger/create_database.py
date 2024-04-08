@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('events.sqlite')
+conn = sqlite3.connect('/data/events.sqlite')
 
 c = conn.cursor()
 c.execute('''

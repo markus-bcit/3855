@@ -94,6 +94,7 @@ def populate_events():
                 new_three += 1
             elif msg.get('code') == '0004':
                 new_four += 1
+            logger.info(f"Consumed Code: {msg.get('code')} Message: {msg.get('message')}")
     except:
         logger.error("No more messages found")
 
