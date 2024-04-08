@@ -186,7 +186,7 @@ def publish_ready_message():
 
 def init_scheduler():
     sched = BackgroundScheduler(daemon=True, timezone='America/Los_Angeles')
-    sched.add_job(populate_stats, 'interval', seconds=5)
+    sched.add_job(populate_stats, 'interval', seconds=app_config["scheduler"]["period_sec"])
     sched.start()
 
 def create_kafka_client():
