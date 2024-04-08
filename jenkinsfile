@@ -18,9 +18,22 @@ pipeline {
         }
         stage('Security Scan') {
             steps {
-                // Add your chosen security scanning tool command here
-                // Example: sh 'safety check'
+                script {
+                    def imageName = '<your_docker_image_name>' // Replace with your Docker image name
+                    def clairScanCmd = "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -e CLAIR_ADDR=<clair_server_address> -e DOCKER_IMAGE=${imageName} quay.io/coreos/clairctl:v2.1.7-clair -c http://<clair_server_address> vuln ${imageName}"
+                    
+                    def clairScanOutput = sh(script: clairScanCmd, returnStdout: true).trim()
+                    echo "Clair scan output: ${clairScanOutput}"
+                    
+                    // Optionally, you can analyze the scan output and take further actions based on the results
+                    if (clairScanOutput.contains('High') || clairScanOutput.contains('Critical')) {
+                        echo "High or critical vulnerabilities found. Take necessary actions."
+                        // You can fail the build or send notifications here
+                    } else {
+                        echo "No high or critical vulnerabilities found. Proceed with deployment."
+                    }
             }
+    }
         }
         stage('Package') {
             steps {
