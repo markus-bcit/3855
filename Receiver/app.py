@@ -1,6 +1,6 @@
 from connexion import NoContent
 from pykafka import KafkaClient
-
+from flask_cors import CORS
 import requests
 import json
 import connexion
@@ -90,6 +90,9 @@ def log_workout(body):
 app = connexion.FlaskApp(__name__, specification_dir='')
 app.add_api("openapi.yml", base_path="/receiver", strict_validation=True,validate_responses=True)
 
+if "TARGET_ENV" not in os.environ or os.environ["TARGET_ENV"] != "test":
+    CORS(app.app)
+    app.app.config['CORS_HEADERS'] = 'Content-Type'
 
 if __name__ == "__main__":
     try:
