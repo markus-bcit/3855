@@ -6,7 +6,7 @@ import requests
 import datetime
 import time
 import json
-import os
+
 import connexion
 from threading import Thread
 from pykafka import KafkaClient
@@ -94,6 +94,7 @@ def populate_events():
                 new_three += 1
             elif msg.get('code') == '0004':
                 new_four += 1
+            logger.info(f"Consumed Code: {msg.get('code')} Message: {msg.get('message')}")
     except:
         logger.error("No more messages found")
 
@@ -139,10 +140,9 @@ def init_scheduler():
 
 # Initialize the Flask app
 app = connexion.FlaskApp(__name__, specification_dir='')
-if "TARGET_ENV" not in os.environ or os.environ["TARGET_ENV"] != "test":
-    CORS(app.app)
-    app.app.config['CORS_HEADERS'] = 'Content-Type'
-app.add_api("openapi.yml", base_path="/event_logger", strict_validation=True, validate_responses=True)
+CORS(app.app)
+app.app.config['CORS_HEADERS'] = 'Content-Type'
+app.add_api("openapi.yml", strict_validation=True, validate_responses=True)
 
 if __name__ == "__main__":
     init_scheduler()
