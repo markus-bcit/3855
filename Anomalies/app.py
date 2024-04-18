@@ -93,15 +93,16 @@ def populate_anomaly():
                     event_type = 'workout'
                     description = f"Workout frequency of {payload.get('frequency')} greater than threshold of {app_config['threshold']['workout']}"
                     anomaly_type = 'workout'
-                    new_anomaly = Anomaly(
-                        event_id=event_id,
-                        trace_id=trace_id,
-                        event_type=event_type,
-                        description=description,
-                        anomaly_type=anomaly_type)
+                    if not session.query(Anomaly).filter_by(event_id=event_id).first():
+                        new_anomaly = Anomaly(
+                            event_id=event_id,
+                            trace_id=trace_id,
+                            event_type=event_type,
+                            description=description,
+                            anomaly_type=anomaly_type)
 
-                    session.add(new_anomaly)
-                    session.commit()
+                        session.add(new_anomaly)
+                        session.commit()
             elif msg.get('type') == 'workoutlog':
                 payload = msg.get('payload')
                 if payload.get('frequency') > app_config["threshold"]["workout"]:
@@ -113,15 +114,16 @@ def populate_anomaly():
                     event_type = 'workout'
                     description = f"Exercises count of {len(exercises)} greater than threshold of {app_config['threshold']['workout']}"
                     anomaly_type = 'workout'
-                    new_anomaly = Anomaly(
-                        event_id=event_id,
-                        trace_id=trace_id,
-                        event_type=event_type,
-                        description=description,
-                        anomaly_type=anomaly_type)
+                    if not session.query(Anomaly).filter_by(event_id=event_id).first():
+                        new_anomaly = Anomaly(
+                            event_id=event_id,
+                            trace_id=trace_id,
+                            event_type=event_type,
+                            description=description,
+                            anomaly_type=anomaly_type)
 
-                    session.add(new_anomaly)
-                    session.commit()
+                        session.add(new_anomaly)
+                        session.commit()
             logger.info(
                 f"Consumed Code: {msg.get('code')} Message: {msg.get('message')}")
     except:
