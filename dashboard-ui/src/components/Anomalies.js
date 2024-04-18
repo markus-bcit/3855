@@ -44,7 +44,7 @@ export default function AppStats() {
             </tr>
             <tr>
               <td colspan="2">
-              Total # of anomalies {stats["num_anomalies"]}
+              <h3>Total # of anomalies</h3> {stats["num_anomalies"]}
               </td>
             </tr>
             <tr>
