@@ -109,6 +109,7 @@ def populate_anomaly():
             msg = json.loads(msg_str)
             if msg.get('type') == 'workout':
                 payload = msg.get('payload')
+                logger.info("PAYLOAD: %s" % payload)
                 if payload.get('frequency') > app_config["threshold"]["workout"]:
                     event_id = payload.get('eventId')
                     trace_id = payload.get('traceId')
@@ -129,12 +130,13 @@ def populate_anomaly():
             elif msg.get('type') == 'workoutlog':
                 payload = msg.get('payload')
                 exercises = payload.get('exercises')
-                if len(exercises) > app_config["threshold"]["workout"]:
+                logger.info("PAYLOAD: %s" % payload)
+                if len(exercises) > app_config["threshold"]["workout_log"]:
 
                     event_id = payload.get('eventId')
                     trace_id = payload.get('traceId')
                     event_type = 'workoutlog'
-                    description = f"Exercises count of {len(exercises)} greater than threshold of {app_config['threshold']['workout']}"
+                    description = f"Exercises count of {len(exercises)} greater than threshold of {app_config['threshold']['workout_log']}"
                     anomaly_type = 'workoutlog'
                     if not session.query(Anomaly).filter_by(event_id=event_id).first():
                         new_anomaly = Anomaly(
@@ -173,6 +175,8 @@ def create_kafka_client():
             logging.info(
                 f"Attempting to connect to Kafka, retry {retry_count}")
             client = KafkaClient(hosts=hostname)
+            logger.info("Threshold 1: %s", app_config['threshold']['workout'])
+            logger.info("Threshold 1: %s", app_config['threshold']['workout_log'])
             return client
         except Exception as e:
             logging.error(f"Failed to connect to Kafka: {e}")
