@@ -176,7 +176,7 @@ def create_kafka_client():
                 f"Attempting to connect to Kafka, retry {retry_count}")
             client = KafkaClient(hosts=hostname)
             logger.info("Threshold 1: %s", app_config['threshold']['workout'])
-            logger.info("Threshold 1: %s", app_config['threshold']['workout_log'])
+            logger.info("Threshold 2: %s", app_config['threshold']['workout_log'])
             return client
         except Exception as e:
             logging.error(f"Failed to connect to Kafka: {e}")
