@@ -34,5 +34,6 @@ class Anomaly(Base):
         dict['event_type'] = self.event_type
         dict['anomaly_type'] = self.anomaly_type
         dict['description'] = self.description
+        dict['date_created'] = self.date_created
 
         return dict
