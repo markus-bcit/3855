@@ -48,10 +48,10 @@ export default function AppStats() {
               </td>
             </tr>
             <tr>
-              <td colspan="2">Description {stats["most_recent_desc"]}</td>
+              <td colspan="2"><h3>Description:</h3> {stats["most_recent_desc"]}</td>
             </tr>
             <tr>
-              <td colspan="2">Last Updated: {stats["most_recent_datetime"]}</td>
+              <td colspan="2"><h3>Last Updated:</h3> {stats["most_recent_datetime"]}</td>
             </tr>
           </tbody>
         </table>
