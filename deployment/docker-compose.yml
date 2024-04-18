@@ -142,6 +142,20 @@ services:
       - "80:80"
     networks:
       - "api.network"
+  anomaly_detector:
+    build:
+      context: ../Anomalies
+    restart: always
+    environment:
+      - TARGET_ENV=test
+    volumes:
+      - /home/azureuser/logs:/logs
+    ports:
+      - "8130"
+    networks:
+      - "api.network"
+    depends_on:
+      - "storage"
 
 volumes:
   my-db:
