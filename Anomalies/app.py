@@ -53,8 +53,8 @@ def get_anomaly_stats():
     out['num_anomalies'] = session.query(Anomaly).count()
     out['most_recent_desc'] = dic['description']
     out['most_recent_datetime'] = dic['date_created']
-    out['workout'] = session.query(Anomaly).where(Anomaly.event_type=='workout').count()
-    out['workout_log'] = session.query(Anomaly).where(Anomaly.event_type=='workoutlog').count()
+    out['workout'] = session.query(Anomaly).filter(Anomaly.event_type=='workout').count()
+    out['workout_log'] = session.query(Anomaly).filter(Anomaly.event_type=='workoutlog').count()
 
     if current_anomaly:
         logger.debug("Current statistics: %s", current_anomaly.to_dict())
