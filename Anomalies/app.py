@@ -45,7 +45,7 @@ def get_anomaly_stats():
     session = DB_SESSION()
 
     current_anomaly = session.query(Anomaly).order_by(
-        Anomaly.last_update.desc()).first()
+        Anomaly.date_created.desc()).first()
 
     if current_anomaly:
         logger.debug("Current statistics: %s", current_anomaly.to_dict())
