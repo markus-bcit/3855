@@ -46,12 +46,15 @@ def get_anomaly_stats():
 
     current_anomaly = session.query(Anomaly).order_by(
         Anomaly.date_created.desc()).first()
+    
 
     dic = current_anomaly.to_dict()
     out = {}
-    out['num_anomalies'] = 0
+    out['num_anomalies'] = session.query(Anomaly).count()
     out['most_recent_desc'] = dic['description']
     out['most_recent_datetime'] = dic['date_created']
+    out['workout'] = session.query(Anomaly).where(Anomaly.event_type=='workout').count()
+    out['workout_log'] = session.query(Anomaly).where(Anomaly.event_type=='workoutlog').count()
 
     if current_anomaly:
         logger.debug("Current statistics: %s", current_anomaly.to_dict())
@@ -111,9 +114,9 @@ def populate_anomaly():
 
                     event_id = payload.get('eventId')
                     trace_id = payload.get('traceId')
-                    event_type = 'workout'
+                    event_type = 'workoutlog'
                     description = f"Exercises count of {len(exercises)} greater than threshold of {app_config['threshold']['workout']}"
-                    anomaly_type = 'workout'
+                    anomaly_type = 'workoutlog'
                     if not session.query(Anomaly).filter_by(event_id=event_id).first():
                         new_anomaly = Anomaly(
                             event_id=event_id,

@@ -52,6 +52,8 @@ components:
       - num_anomalies
       - most_recent_desc
       - most_recent_datetime
+      - workout
+      - workout_log
       properties:
         num_anomalies:
           type: integer
@@ -62,5 +64,11 @@ components:
         most_recent_datetime:
           type: string
           example: 2024-04-18 11:22:33
+        workout:
+          type: integer
+          example: 5
+        workout_log:
+          type: integer
+          example: 5
       type: object
 
