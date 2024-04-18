@@ -110,6 +110,8 @@ def populate_anomaly():
                 payload = msg.get('payload')
                 logger.debug("PAYLOAD %s", payload)
                 exercises = json.loads(payload.get('exercises'))
+                logger.debug("exercises %s", exercises)
+                logger.debug("tpye %s", type(exercises))
                 if len(exercises) > app_config["threshold"]["workout"]:
 
 
