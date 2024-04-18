@@ -150,6 +150,7 @@ services:
       - TARGET_ENV=test
     volumes:
       - /home/azureuser/logs:/logs
+      - /home/azureuser/config/anomaly_detector:/config
     ports:
       - "8130"
     networks:

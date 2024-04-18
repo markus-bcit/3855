@@ -6,6 +6,7 @@ import requests
 import datetime
 import time
 import json
+import os
 
 import connexion
 from threading import Thread
@@ -25,14 +26,25 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import pytz
 timezone = pytz.timezone('America/Los_Angeles')
 
-with open('app_conf.yml', 'r') as f:
+if "TARGET_ENV" in os.environ and os.environ["TARGET_ENV"] == "test":
+    print("In Test Environment")
+    app_conf_file = "/config/app_conf.yml"
+    log_conf_file = "/config/log_conf.yml"
+else:
+    print("In Dev Environment")
+    app_conf_file = "app_conf.yml"
+    log_conf_file = "log_conf.yml"
+with open(app_conf_file, 'r') as f:
     app_config = yaml.safe_load(f.read())
 
-with open('log_conf.yml', 'r') as f:
+# External Logging Configuration
+with open(log_conf_file, 'r') as f:
     log_config = yaml.safe_load(f.read())
     logging.config.dictConfig(log_config)
+    logger = logging.getLogger('basicLogger')
+    logger.info("App Conf File: %s" % app_conf_file)
+    logger.info("Log Conf File: %s" % log_conf_file)
 
-logger = logging.getLogger('basicLogger')
 
 DB_ENGINE = create_engine(f"sqlite:///{app_config['datastore']['filename']}")
 Base.metadata.bind = DB_ENGINE
@@ -40,7 +52,7 @@ DB_SESSION = sessionmaker(bind=DB_ENGINE)
 
 
 def get_anomaly_stats():
-    logger.info("Request for event logger has started")
+    logger.info("Request for anomaly has started")
 
     session = DB_SESSION()
 
@@ -57,19 +69,19 @@ def get_anomaly_stats():
     out['workout_log'] = session.query(Anomaly).filter(Anomaly.event_type=='workoutlog').count()
 
     if current_anomaly:
-        logger.debug("Current statistics: %s", current_anomaly.to_dict())
-        logger.info("Request for statistics has completed")
+        logger.debug("Current anomaly: %s", out)
+        logger.info("Request for anomaly has completed")
         session.close()
         return out, 200
     else:
-        logger.error("Statistics do not exist")
-        logger.info("Request for statistics has completed")
+        logger.error("anomaly do not exist")
+        logger.info("Request for anomaly has completed")
         session.close()
-        return "Statistics do not exist", 404
+        return "anomaly do not exist", 404
 
 
 def populate_anomaly():
-    logger.info("Periodic processing for event logger has started")
+    logger.info("Periodic anomaly check for anomalies has started")
 
     session = DB_SESSION()
     new_anomaly = None
@@ -83,7 +95,7 @@ def populate_anomaly():
     topic = client.topics[str.encode(app_config["events"]["topic"])]
     consumer = topic.get_simple_consumer(
         reset_offset_on_start=False, auto_offset_reset=OffsetType.LATEST)
-    logger.info("Retrieving Event Logger")
+    logger.info("Retrieving events for anomaly detection")
     try:
         for msg in consumer:
             msg_str = msg.value.decode('utf-8')
@@ -106,14 +118,11 @@ def populate_anomaly():
 
                         session.add(new_anomaly)
                         session.commit()
+                        logger.debug("Updated anomoly ID: %s", new_anomaly.id)
             elif msg.get('type') == 'workoutlog':
                 payload = msg.get('payload')
-                logger.debug("PAYLOAD %s", payload)
                 exercises = payload.get('exercises')
-                logger.debug("exercises %s", exercises)
-                logger.debug("tpye %s", type(exercises))
                 if len(exercises) > app_config["threshold"]["workout"]:
-
 
                     event_id = payload.get('eventId')
                     trace_id = payload.get('traceId')
@@ -130,20 +139,14 @@ def populate_anomaly():
 
                         session.add(new_anomaly)
                         session.commit()
-                        logger.debug("Updated statistics ID: %s", new_anomaly.id)
-            logger.info(
-                f"Consumed Code: {msg.get('code')} Message: {msg.get('message')}")
+                        logger.debug("Updated anomoly ID: %s", new_anomaly.id)
     except:
-        logger.error("No more messages found")
+        logger.error("No more anomalies found")
 
-    if new_anomaly:
-        logger.debug("Updated statistics ID: %s", new_anomaly.id)
-    else:
-        logger.debug("No new anomaly found")
 
     session.close()
 
-    logger.info("Periodic processing has ended")
+    logger.info("Periodic anomaly detection has ended")
 
 
 def create_kafka_client():
