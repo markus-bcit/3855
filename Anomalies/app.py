@@ -129,7 +129,10 @@ def populate_anomaly():
     except:
         logger.error("No more messages found")
 
-    logger.debug("Updated statistics ID: %s", new_anomaly.id)
+    if new_anomaly:
+        logger.debug("Updated statistics ID: %s", new_anomaly.id)
+    else:
+        logger.debug("No new anomaly found")
 
     session.close()
 
