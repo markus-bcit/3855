@@ -1,0 +1,17 @@
+version: 1
+datastore:
+ filename: anomaly.sqlite
+scheduler:
+ period_sec: 5
+eventstore:
+ url: http://markus-kafka.canadacentral.cloudapp.azure.com/storage
+events:
+ hostname: markus-kafka.canadacentral.cloudapp.azure.com
+ port: 9092
+ topic: events
+ topic2: events_log
+kafka:
+  max_retries: 9999
+threshold:
+  workout: 3
+  workout_log: 3
