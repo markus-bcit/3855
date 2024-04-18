@@ -69,7 +69,7 @@ def populate_anomaly():
     logger.info("Periodic processing for event logger has started")
 
     session = DB_SESSION()
-
+    new_anomaly = None
     event_id = ''
     trace_id = ''
     event_type = ''
@@ -124,6 +124,7 @@ def populate_anomaly():
 
                         session.add(new_anomaly)
                         session.commit()
+                        logger.debug("Updated statistics ID: %s", new_anomaly.id)
             logger.info(
                 f"Consumed Code: {msg.get('code')} Message: {msg.get('message')}")
     except:
