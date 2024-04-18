@@ -46,13 +46,12 @@ def get_anomaly_stats():
 
     current_anomaly = session.query(Anomaly).order_by(
         Anomaly.date_created.desc()).first()
-    
+
     dic = current_anomaly.to_dict()
     out = {}
-    out['num_anomalies'] = 0 
+    out['num_anomalies'] = 0
     out['most_recent_desc'] = dic['description']
     out['most_recent_datetime'] = dic['date_created']
-    
 
     if current_anomaly:
         logger.debug("Current statistics: %s", current_anomaly.to_dict())
@@ -79,7 +78,8 @@ def populate_anomaly():
 
     client = create_kafka_client()
     topic = client.topics[str.encode(app_config["events"]["topic"])]
-    consumer = topic.get_simple_consumer(reset_offset_on_start=OffsetType.LATEST, consumer_timeout_ms=1000)
+    consumer = topic.get_simple_consumer(
+        reset_offset_on_start=False, auto_offset_reset=OffsetType.LATEST)
     logger.info("Retrieving Event Logger")
     try:
         for msg in consumer:
@@ -94,38 +94,38 @@ def populate_anomaly():
                     description = f"Workout frequency of {payload.get('frequency')} greater than threshold of {app_config['threshold']['workout']}"
                     anomaly_type = 'workout'
                     new_anomaly = Anomaly(
-                    event_id=event_id,
-                    trace_id=trace_id,
-                    event_type=event_type,
-                    description=description,
-                    anomaly_type=anomaly_type)
-                    
+                        event_id=event_id,
+                        trace_id=trace_id,
+                        event_type=event_type,
+                        description=description,
+                        anomaly_type=anomaly_type)
+
                     session.add(new_anomaly)
                     session.commit()
             elif msg.get('type') == 'workoutlog':
                 payload = msg.get('payload')
                 if payload.get('frequency') > app_config["threshold"]["workout"]:
-                    
+
                     exercises = json.loads(payload.get('exercises'))
-                    
+
                     event_id = payload.get('eventId')
                     trace_id = payload.get('traceId')
                     event_type = 'workout'
                     description = f"Exercises count of {len(exercises)} greater than threshold of {app_config['threshold']['workout']}"
                     anomaly_type = 'workout'
                     new_anomaly = Anomaly(
-                    event_id=event_id,
-                    trace_id=trace_id,
-                    event_type=event_type,
-                    description=description,
-                    anomaly_type=anomaly_type)
-                    
+                        event_id=event_id,
+                        trace_id=trace_id,
+                        event_type=event_type,
+                        description=description,
+                        anomaly_type=anomaly_type)
+
                     session.add(new_anomaly)
                     session.commit()
-            logger.info(f"Consumed Code: {msg.get('code')} Message: {msg.get('message')}")
+            logger.info(
+                f"Consumed Code: {msg.get('code')} Message: {msg.get('message')}")
     except:
         logger.error("No more messages found")
-
 
     logger.debug("Updated statistics ID: %s", new_anomaly.id)
 
@@ -161,7 +161,8 @@ def init_scheduler():
 app = connexion.FlaskApp(__name__, specification_dir='')
 CORS(app.app)
 app.app.config['CORS_HEADERS'] = 'Content-Type'
-app.add_api("openapi.yml",base_path="/anomaly_detector", strict_validation=True, validate_responses=True)
+app.add_api("openapi.yml", base_path="/anomaly_detector",
+            strict_validation=True, validate_responses=True)
 
 if __name__ == "__main__":
     init_scheduler()
