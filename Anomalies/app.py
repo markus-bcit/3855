@@ -46,12 +46,19 @@ def get_anomaly_stats():
 
     current_anomaly = session.query(Anomaly).order_by(
         Anomaly.date_created.desc()).first()
+    
+    dic = current_anomaly.to_dict()
+    out = {}
+    out['num_anomalies'] = 0 
+    out['most_recent_desc'] = dic['description']
+    out['most_recent_datetime'] = dic['date_created']
+    
 
     if current_anomaly:
         logger.debug("Current statistics: %s", current_anomaly.to_dict())
         logger.info("Request for statistics has completed")
         session.close()
-        return current_anomaly.to_dict(), 200
+        return out, 200
     else:
         logger.error("Statistics do not exist")
         logger.info("Request for statistics has completed")
